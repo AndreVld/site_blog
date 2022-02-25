@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+body{
+    background: #d8d8d8;
+}
+
 .container{
     position: relative;
     max-width: 1800px;
