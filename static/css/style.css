@@ -3,16 +3,12 @@
     padding: 0;
 }
 
-body{
-    background: #d8d8d8;
-}
-
 .container{
     position: relative;
-    max-width: 1800px;
+    max-width: 1500px;
     display: flex;
-    background: #a58888;;
     margin: 0 auto;
+    background: #e4e4e4;;
 }
 
 .block{
@@ -41,7 +37,7 @@ body{
 /*_____________________LEFT_________________*/
 
 .left{
-    flex-grow: 1.5;
+    flex-grow: 1.7;
 
     position: sticky ;
     top: 0;
@@ -85,8 +81,8 @@ body{
 
 .link_sub{
     text-decoration: none;
-    font-family: Lato;
-    font-weight: bold;
+    font-family: Russo One;
+    font-weight: normal;
     font-size: 15px;
     line-height: 18px;
     color: #B5B5B5;
@@ -104,6 +100,7 @@ body{
 .mid{
     flex-grow: 6;
 
+
     min-height: 100vh;
     flex-basis: 0;
 }
@@ -113,17 +110,99 @@ body{
     border-style: none none solid none ;
 }
 
+.post{
+    margin: 5px 10px 30px 10px;
+    border-radius: 5px;
+    background:  linear-gradient(#757676, #9fc1ef);
+    padding: 4px;
+    box-sizing: border-box;
+}
 
-.content{
-    font-size: 2rem;
-    padding: 16px;
+.block_author{
+    margin: 5px 10px 10px 15px;
+    font-family: cursive;
+    display: flex;
+    justify-content: space-between;
+}
+
+.link_author{
+    text-decoration: none;
+    font-size: 19px;
+    margin-right: 15px;
+    color: #9fc1ef;
+}
+.link_author:hover{
+    color:cyan;
+}
+.time{
+    align-self: center;
+}
+.block_count_C_V{
+    align-self: center;
+}
+.text_C_V{
+    font-size: 13px;
+    margin-right: 12px;
 }
 
 
+.post_image_prev{
+    width: 100%;
+    max-height: auto;
+}
+.post_title{
+    margin: 12px 0px 0px 20px;
+    color: #121314;
+}
+
+.post_intro{
+    margin: 12px 0px 0px 20px;
+    font-size: large;
+    font-weight:bold;
+    color: #121314;
+}
+
+.read_more{
+    display: flex;
+    justify-content: end;
+    margin-right: 20px;
+}
+.link_read_more{
+    text-decoration: none;
+    font-size: 15px;
+    font-family: cursive;
+    color: #121314;
+}
+.link_read_more:hover{
+    color: #757676;
+    
+}
+.blog_tags{
+    margin: 12px;
+    border:  1px darkcyan;
+    border-style: solid none none none ;
+    padding-top: 5px;
+    box-sizing: border-box;
+}
+
+.teg{
+    display:inline-block;
+	color:#f0eeee;
+	background-color: #757676;
+	border-radius: 5px;
+	margin: 2px;
+	padding: 2px 5px;
+	font-size: 15px;
+    font-family: Russo One;
+}
+.teg:hover{
+    color:#757676;
+	background-color: #f0eeee;
+}
 /*_____________________RIGHT_________________*/
 
 .right{
-    flex-grow: 1.2;
+    flex-grow: 1.4;
 
     position: sticky ;
     top: 0;
@@ -131,13 +210,12 @@ body{
     background:  linear-gradient(#9fc1ef, #7b8793);
     opacity: 0.8;
     flex-basis: 0;
-
 }
 
 
 .profile-pic{
-    max-width: 250px;
-    max-height: 250px;
+    width: 100%;
+    height: auto;
     border-radius: 2px;
 
 }

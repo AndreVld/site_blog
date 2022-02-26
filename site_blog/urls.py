@@ -21,8 +21,9 @@ from site_blog import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('users.urls'), name='users'),
+    path('', include('blog.urls'), name='users'),
 ]
 
-if settings.DEBUG:
+if not settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
