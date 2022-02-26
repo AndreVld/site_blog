@@ -21,7 +21,7 @@ from site_blog import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('users.urls'), name='users'),
+    path('', include('blog.urls'), name='users'),
 ]
 
 if not settings.DEBUG:
