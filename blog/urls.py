@@ -1,8 +1,10 @@
 from django.urls import path
-from django.views.generic import TemplateView
+from blog.views import ListPosts, CreatePost, UpdatePost
 
-from site_blog import settings
+app_name = 'blog'
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='blog/posts.html'), name='posts'),
+    path('', ListPosts.as_view(), name='posts'),
+    path('create_post/', CreatePost.as_view(), name='create_post'),
+    path('update_post/<slug:slug>', UpdatePost.as_view(), name='update_post'),
 ]

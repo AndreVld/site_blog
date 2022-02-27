@@ -1,335 +1,59 @@
+{% extends 'blog/base.html' %}
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
+{% block middle %}
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static  'css/style.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital@1&family=Russo+One&display=swap" rel="stylesheet">
-    <title>base</title>
+    <div class="content">
 
-</head>
-<div class="container">
-    <!-- /*_____________________LEFT_________________*/ -->
-    <div class="block left scrollbar">
-
-        <div class="block_caterory">
-            <div class="categories">CATEGORIES</div>
-            <ul class="list_categories">
-                <li class="cat"><a class="link_sub" href="#"># name</a>
-                    <div> 12</div>
-                </li>
-                <li class="cat"><a class="link_sub" href="#"># name</a>
-                    <div> 12</div>
-                </li>
-                <li class="cat"><a class="link_sub" href="#"># name</a>
-                    <div> 12</div>
-                </li>
-                <li class="cat"><a class="link_sub" href="#"># name</a>
-                    <div> 12</div>
-                </li>
-                <li class="cat"><a class="link_sub" href="#"># name</a>
-                    <div> 12</div>
-                </li>
-            </ul>
-
-        </div>
-
-        <div class="block_caterory">
-            <div class="categories">
-                <div>SUBSCRIPTIONS</div>
-                <div>32</div>
-            </div>
-            <ul class="list_categories">
-                <li class="cat"><a class="link_sub" href="#"># name</a>
-                    <div> 12</div>
-                </li>
-                <li class="cat"><a class="link_sub" href="#"># name</a>
-                    <div> 12</div>
-                </li>
-                <li class="cat"><a class="link_sub" href="#"># name</a>
-                    <div> 12</div>
-                </li>
-                <li class="cat"><a class="link_sub" href="#"># name</a>
-                    <div> 12</div>
-                </li>
-                <li class="cat"><a class="link_sub" href="#"># name</a>
-                    <div> 12</div>
-                </li>
-            </ul>
-
-        </div>
-
-    </div>
-
-
-    <!-- /*_____________________MIDDLE_________________*/ -->
-    <div class="block mid">
-        <div class="top"></div>
-        <div class="content">
-
+            {% for post in object_list %}
             <div class="post">
                 <div class="block_author">
                     <div>
-                        <a href="#" class="link_author">author_post</a><span class="time"> сколко дней с момента
+                        <a href="#" class="link_author">{{ post.author }}</a><span class="time"> сколко дней с момента
                             публикации</span>
                     </div>
                     <div class="block_count_C_V">
 
                         <div class="text_C_V">
                             <img src="{% static 'images/icons/comments16.png' %}">count_comments
-                            <img src="{% static 'images/icons/views16.png' %}">count_views
+                            <img src="{% static 'images/icons/views16.png' %}">{{ post.likes }}
                         </div>
                     </div>
                 </div>
-
-                <img class="post_image_prev" src="{% static 'images/default_ava.jpg' %}">
-
-
-                <h2 class="post_title">
-                    headline
-                </h2>
-
-                <p class="post_intro">quis rem
-                    vam similique aliquid, eius
-                    molestias minus magni praesentium illo voluptas, accusamus ut modi nulla. Doloremque illumdicta
-
-                    dignissimos
-                    saepe, eum illo reprehenderit maxime accusamus
-                    dolore
-                    veniam
-                </p>
-                <div class="read_more">
-                    <a class="link_read_more" target="_blank" href="#">Read more</a>
-                </div>
-
-                <div class="blog_tags">
-                    <a style="text-decoration: none;" target="_blank" href="#"><span class="teg">Python</span></a>
-                    <a style="text-decoration: none;" target="_blank" href="#"><span class="teg">Python</span></a>
-                    <a style="text-decoration: none;" target="_blank" href="#"><span class="teg">Python</span></a>
-                    <a style="text-decoration: none;" target="_blank" href="#"><span class="teg">Python</span></a>
-                    <a style="text-decoration: none;" target="_blank" href="#"><span class="teg">Python</span></a>
-                    <a style="text-decoration: none;" target="_blank" href="#"><span class="teg">Python</span></a>
-                    <a style="text-decoration: none;" target="_blank" href="#"><span class="teg">Python</span></a>
-                    <a style="text-decoration: none;" target="_blank" href="#"><span class="teg">Python</span></a>
-                    <a style="text-decoration: none;" target="_blank" href="#"><span class="teg">Python</span></a>
-                    <a style="text-decoration: none;" target="_blank" href="#"><span class="teg">Python</span></a>
-                    <a style="text-decoration: none;" target="_blank" href="#"><span class="teg">Python</span></a>
-                    <a style="text-decoration: none;" target="_blank" href="#"><span class="teg">Python</span></a>
-                    <a style="text-decoration: none;" target="_blank" href="#"><span class="teg">Python</span></a>
-                    <a style="text-decoration: none;" target="_blank" href="#"><span class="teg">Python</span></a>
-                    <a style="text-decoration: none;" target="_blank" href="#"><span class="teg">Python</span></a>
-
-                </div>
-
-            </div>
-
-            <div class="post">
-                <div class="block_author">
-                    <div>
-                        <a href="#" class="link_author">author_post</a><span class="time"> сколко дней с момента
-                            публикации</span>
-                    </div>
-                    <div class="block_count_C_V">
-
-                        <div class="text_C_V">
-                            <img src="{% static 'images/icons/comments16.png' %}">count_comments
-                            <img src="{% static 'images/icons/views16.png' %}">count_views
-                        </div>
-                    </div>
-                </div>
-
-                <img class="post_image_prev" src="{% static 'images/default_ava.jpg' %}">
-
+                {% if post.image %}
+                    <img class="post_image_prev" src="{{ post.image.url }}">
+                {% endif %}
 
                 <h2 class="post_title">
-                    headline
+                    {{ post.headline }}
                 </h2>
+                {% if not post.sub_headline is Null %}
+                    <p class="post_intro">
+                        {{ post.sub_headline }}
+                    </p>
+                {% else %}
+                <p class="post_intro">
+                        {{ post.body|truncatewords:50}}
+                    </p>
 
-                <p class="post_intro">quis rem
-                    vam similique aliquid, eius
-                    molestias minus magni praesentium illo voluptas, accusamus ut modi nulla. Doloremque illumdicta
-
-                    dignissimos
-                    saepe, eum illo reprehenderit maxime accusamus
-                    dolore
-                    veniam
-                </p>
+                {% endif %}
                 <div class="read_more">
                     <a class="link_read_more" target="_blank" href="#">Read more</a>
+                    {% if post.author == user %}
+                        <a class="link_read_more" target="_blank" href="{% url 'blog:update_post' post.slug  %}">|Edit</a>
+                    {% endif %}
                 </div>
 
-                <div class="blog_tags">
-                    <a style="text-decoration: none;" href="#"><span class="teg">Python</span></a>
-                    <a style="text-decoration: none;" href="#"><span class="teg">Python</span></a>
-                    <a style="text-decoration: none;" href="#"><span class="teg">Python</span></a>
-                    <a style="text-decoration: none;" href="#"><span class="teg">Python</span></a>
-                    <a style="text-decoration: none;" href="#"><span class="teg">Python</span></a>
-                    <a style="text-decoration: none;" href="#"><span class="teg">Python</span></a>
-                    <a style="text-decoration: none;" href="#"><span class="teg">Python</span></a>
-                    <a style="text-decoration: none;" href="#"><span class="teg">Python</span></a>
-                    <a style="text-decoration: none;" href="#"><span class="teg">Python</span></a>
-                    <a style="text-decoration: none;" href="#"><span class="teg">Python</span></a>
-                    <a style="text-decoration: none;" href="#"><span class="teg">Python</span></a>
-                    <a style="text-decoration: none;" href="#"><span class="teg">Python</span></a>
-                    <a style="text-decoration: none;" href="#"><span class="teg">Python</span></a>
-                    <a style="text-decoration: none;" href="#"><span class="teg">Python</span></a>
-                </div>
-
+                {% if post.tags.all.exists %}
+                    <div class="blog_tags">
+                        {% for tag in post.tags.all %}
+                            <a style="text-decoration: none;" href="#"><span class="teg">{{ tag }}</span></a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
-        </div>
-    </div>
-
-
-    <!-- /*_____________________RIGHT_________________*/ -->
-    <div class="block right scrollbar">
-
-        <img class="profile-pic" src="{% static 'images/default_ava.jpg' %}" alt="">
-
-        <div class="fullname">Amilia Luna</div>
-
-        <ul class="block_social">
-            <li class="social_link">
-                <a href="#">
-                    <img class="social_img" src="facebook-96.png" alt="">
-                </a>
-            </li>
-            <li class="social_link">
-                <a href="#">
-                    <img class="social_img" src="instagram-96.png" alt="">
-                </a>
-            </li>
-            <li class="social_link">
-                <a href="#">
-                    <img class="social_img" src="вконтакте-96.png" alt="">
-                </a>
-            </li>
-        </ul>
-        <div class="user_info">
-            <div class="user_label">Username</div>
-            <div class="user_date">Username</div>
-
-            <div class="user_label">Email</div>
-            <div class="user_date">email</div>
-
-            <div class="user_label">About me</div>
-            <div class="user_date">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi hic nihil a vel
-                id recusandae fugiat facere
-                et mollitia, incidunt cum asperiores nemo nam officiis quia inventore dolores. Similique omnis veritatis
-                voluptatibus facilis eius beatae nam adipisci rerum, repudiandae doloremque itaque nobis quibusdam
-                quaerat
-                debitis delectus ab vero amet distinctio eum asperiores repellendus blanditiis assumenda ullam totam.
-                Ad,
-                voluptate. Itaque consectetur nobis cupiditate quibusdam officiis optio et accusantium quidem pariatur
-                quis rem
-                vam similique aliquid, eius
-                molestias minus magni praesentium illo voluptas, accusamus ut modi nulla. Doloremque illum dicta
-                dignissimos
-                saepe, eum illo reprehenderit maxime accusamus dolores sit incidunt id obcaecati deleniti cumque dolore
-                veniam
-                blanditiis aliquid explicabo. Assumenda, laborum omnis! Molestias, asperiores.
-                eius
-                molestias minus magni praesentium illo voluptas, accusamus ut modi nulla. Doloremque illum dicta
-                dignissimos
-                saepe, eum illo reprehenderit maxime accusamus dolores sit incidunt id obcaecati deleniti cumque dolore
-                veniam
-                blanditiis aliquid explicabo. Assumenda, laborum omnis! Molestias, asperiores.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi hic nihil a vel id recusandae fugiat
-                facere
-                et mollitia, incidunt cum asperiores nemo nam officiis quia inventore dolores. Similique omnis veritatis
-                voluptatibus facilis eius beatae nam adipisci rerum, repudiandae doloremque itaque nobis quibusdam
-                quaerat
-                debitis delectus ab vero amet distinctio eum asperiores repellendus blanditiis assumenda ullam totam.
-                Ad,
-                voluptate. Itaque consectetur nobis cupiditate quibusdam officiis optio et accusantium quidem pariatur
-                quis
-                rem
-                voluoluptatibus suscipit eum praesentium sapiente, nihil quae iste esse officia
-                dignissimos, architecto aliquam magni reprehenderit? Odit quam fugit delectus libero quo harum iusto
-                voluptate
-                vitae dolore quidem aspernatur cumque, rerum repellendus nisi qui doloremque ad repellat aperiam placeat
-                illo
-                non quibusdam iure. Magni non veritatis, asperiores voluptas adipisci earum magnam alias quisquam, culpa
-                autem
-                nobis cum. Porro distinctio dolores ipsum numquam laboriosam doloremque error quibusdam similique
-                aliquid,
-                eius
-                molestias minus magni praesentium illo voluptas, accusamus ut modi nulla. Doloremque illum dicta
-                dignissimos
-                saepe, eum illo reprehenderit maxime accusamus dolores sit incidunt id obcaecati deleniti cumque dolore
-                veniam
-                blanditiis aliquid explicabo. Assumenda, laborum omnis! Molestias, asperiores.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi hic nihil a vel id recusandae fugiat
-                facere
-                et mollitia, incidunt cum asperiores nemo nam officiis quia inventore dolores. Similique omnis veritatis
-                voluptatibus facilis eius beatae nam adipisci rerum, repudiandae doloremque itaque nobis quibusdam
-                quaerat
-                debitis delectus ab vero amet distinctio eum asperiores repellendus blanditiis assu
-                debitis delectus ab vero amet distinctio eum asperiores repellendus blanditiis assumenda ullam totam.
-                Ad,
-                voluptate. Itaque consectetur nobis cupiditate quibusdam officiis optio et accusantium quidem pariatur
-                quis
-                rem
-                voluoluptatibus suscipit eum praesentium sapiente, nihil quae iste esse officia
-                dignissimos, architecto aliquam magni reprehenderit? Odit quam fugit delectus libero quo harum iusto
-                voluptate
-                vitae dolore quidem aspernatur cumque, rerum repellendus nisi qui doloremque ad repellat aperiam placeat
-                illo
-                non quibusdam iure. Magni non veritatis, asperiores voluptas adipisci earum magnam alias quisquam, culpa
-                autem
-                nobis cum. Porro distinctio dolores ipsum numquam laboriosam doloremque error quibusdam similique
-                aliquid,
-                eius
-                molestias minus magni praesentium illo voluptas, accusamus ut modi nulla. Doloremque illum dicta
-                dignissimos
-                saepe, eum illo reprehenderit maxime accusamus dolores sit incidunt id obcaecati deleniti cumque dolore
-                veniam
-                blanditiis aliquid explicabo. Assumenda, laborum omnis! Molestias, asperiores.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi hic nihil a vel id recusandae fugiat
-                facere
-                et mollitia, incidunt cum asperiores nemo nam officiis quia inventore dolores. Similique omnis veritatis
-                voluptatibus facilis eius beatae nam adipisci rerum, repudiandae doloremque itaque nobis quibusdam
-                quaerat
-                debitis delectus ab vero amet distinctio eum asperiores repellendus blanditiis assu
-                debitis delectus ab vero amet distinctio eum asperiores repellendus blanditiis assumenda ullam totam.
-                Ad,
-                voluptate. Itaque consectetur nobis cupiditate quibusdam officiis optio et accusantium quidem pariatur
-                quis
-                rem
-                voluoluptatibus suscipit eum praesentium sapiente, nihil quae iste esse officia
-                dignissimos, architecto aliquam magni reprehenderit? Odit quam fugit delectus libero quo harum iusto
-                voluptate
-                vitae dolore quidem aspernatur cumque, rerum repellendus nisi qui doloremque ad repellat aperiam placeat
-                illo
-                non quibusdam iure. Magni non veritatis, asperiores voluptas adipisci earum magnam alias quisquam, culpa
-                autem
-                nobis cum. Porro distinctio dolores ipsum numquam laboriosam doloremque error quibusdam similique
-                aliquid,
-                eius
-                molestias minus magni praesentium illo voluptas, accusamus ut modi nulla. Doloremque illum dicta
-                dignissimos
-                saepe, eum illo reprehenderit maxime accusamus dolores sit incidunt id obcaecati deleniti cumque dolore
-                veniam
-                blanditiis aliquid explicabo. Assumenda, laborum omnis! Molestias, asperiores.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi hic nihil a vel id recusandae fugiat
-                facere
-                et mollitia, incidunt cum asperiores nemo nam officiis quia inventore dolores. Similique omnis veritatis
-                voluptatibus facilis eius beatae nam adipisci rerum, repudiandae doloremque itaque nobis quibusdam
-                quaerat
-                debitis delectus ab vero amet distinctio eum asperiores repellendus blanditiis assu
-            </div>
+            {% endfor %}
         </div>
 
-
-    </div>
-</div>
-
-<body>
-
-</body>
-
-</html>
+{% endblock middle %}
