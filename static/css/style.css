@@ -148,7 +148,8 @@
 
 .post_image_prev{
     width: 100%;
-    max-height: auto;
+    max-height: 1080px;
+    border-radius: 5px;
 }
 .post_title{
     margin: 12px 0px 0px 20px;
@@ -216,8 +217,7 @@
 .profile-pic{
     width: 100%;
     height: auto;
-    border-radius: 2px;
-
+    border-radius: 3px;
 }
 
 .fullname{
@@ -262,4 +262,47 @@
     font-family: cursive;
     font-size: 16px;
     line-height: 19px;
+}
+
+/*_____________________crispy_________________*/
+
+:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
+
+.form_container{
+    width: 95%;
+	margin: 0 auto;
+    font-size: 17px;
+}
+
+#id_headline >{
+    max-width: 100%;
+}
+
+#div_id_tags > div{
+    max-height : 100px;
+    overflow-y : scroll;
+    border : 1px solid #888;
+    padding : 5px;
+    border-radius : 5px;
+}
+
+.textinput{
+
+    border: none;
+	width: 100%;
+    padding: 10px 0 10px 15px ;
+	border-radius: 5px;
+	font-size: 19px;
+    box-sizing: border-box;
+}
+
+.textinput:focus{
+    box-shadow: 3px 8px 6px rgb(174, 188, 201);
+}
+
+.form-group{
+    margin-bottom: 15px;
 }

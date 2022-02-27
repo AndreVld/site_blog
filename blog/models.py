@@ -24,7 +24,7 @@ class Posts(models.Model):
     image = models.ImageField(blank=True, null=True, upload_to='images')
     headline = models.CharField(max_length=200, verbose_name='Заголовок')
     sub_headline = models.CharField(max_length=200, null=True, blank=True, verbose_name='Подзаголовок')
-    body = RichTextField(null=True, blank=True, verbose_name='Текст поста')
+    body = RichTextField(null=True, blank=True, verbose_name='Пост')
     tags = models.ManyToManyField(Tags, blank=True, null=True)
     featured = models.BooleanField(default=False, verbose_name='Опубликовать сразу?')
     active = models.BooleanField(default=False, verbose_name='Активен?')
