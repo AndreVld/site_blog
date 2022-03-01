@@ -7,8 +7,8 @@ from blog.models import Posts
 
 
 class ListPosts(ListView):
-    model = Posts
     template_name = 'blog/posts.html'
+    paginate_by = 1
 
     def get_queryset(self):
         return Posts.objects.filter(active=True, featured=True)

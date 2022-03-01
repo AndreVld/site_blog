@@ -113,7 +113,7 @@
 .post{
     margin: 5px 10px 30px 10px;
     border-radius: 5px;
-    background:  linear-gradient(#757676, #9fc1ef);
+    background:  linear-gradient(#757676, #90afda);
     padding: 4px;
     box-sizing: border-box;
 }
@@ -264,7 +264,7 @@
     line-height: 19px;
 }
 
-/*_____________________crispy_________________*/
+/*_____________________crispy_forms_________________*/
 
 :active, :hover, :focus {
     outline: 0;
@@ -306,3 +306,4 @@
 .form-group{
     margin-bottom: 15px;
 }
+

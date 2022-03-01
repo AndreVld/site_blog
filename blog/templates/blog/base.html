@@ -91,7 +91,7 @@
         {% endif %}
         <img class="profile-pic" src="{% static 'images/default_ava.jpg' %}" alt="">
 
-        <div class="fullname">Amilia Luna</div>
+        <div class="fullname">{% firstof user.get_full_name user %}</div>
 
         <ul class="block_social">
             <li class="social_link">
