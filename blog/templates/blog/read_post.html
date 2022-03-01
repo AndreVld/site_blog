@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block read_post %}
+
+    <div class="read_post">
+     <div class="block_author">
+                    <div>
+                        <a href="#" class="link_author">{{ object.author }}</a>
+                        <span class="time"> {{ object.created_date|timesince }} назад
+                            </span>
+                    </div>
+                </div>
+
+        <img class="read_post_image_prev" src="{{object.image.url}}" alt="">
+        <div>
+            <h1 class="text_post headline ">{{ object.headline }}</h1>
+            {% if object.sub_headline is not none %}
+            <h4 class="text_post sub_headline ">{{ object.sub_headline }}</h4>
+            {% endif%}
+            <p>{{ object.body|safe }}</p>
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -4,14 +4,16 @@
 
 {% block middle %}
 
-    <div class="content">
 
-            {% for post in object_list %}
+
+        {% for post in object_list %}
             <div class="post">
+
                 <div class="block_author">
                     <div>
-                        <a href="#" class="link_author">{{ post.author }}</a><span class="time"> сколко дней с момента
-                            публикации</span>
+                        <a href="#" class="link_author">{{ post.author }}</a>
+                        <span class="time"> {{ post.created_date|timesince }} назад
+                            </span>
                     </div>
                     <div class="block_count_C_V">
 
@@ -25,23 +27,23 @@
                     <img class="post_image_prev" src="{{ post.image.url }}">
                 {% endif %}
 
-                <h2 class="post_title">
-                    {{ post.headline }}
-                </h2>
+                <h1 class="post_title">
+                    {{ post.headline|capfirst }}
+                </h1>
                 {% if not post.sub_headline is Null %}
                     <p class="post_intro">
-                        {{ post.sub_headline }}
+                        {{ post.sub_headline|capfirst }}
                     </p>
                 {% else %}
-                <p class="post_intro">
-                        {{ post.body|truncatewords:50}}
+                    <p class="post_intro">
+                            {{ post.body|safe|truncatewords:50}}
                     </p>
-
                 {% endif %}
                 <div class="read_more">
-                    <a class="link_read_more" target="_blank" href="#">Read more</a>
+                    <a class="link_read_more" target="_blank" href="{% url 'blog:read_post' post.slug %}">Read more</a>
                     {% if post.author == user %}
                         <a class="link_read_more" target="_blank" href="{% url 'blog:update_post' post.slug  %}">|Edit</a>
+                         <a class="link_read_more" href="{% url 'blog:delete_post' post.slug  %}">|Delete</a>
                     {% endif %}
                 </div>
 
@@ -53,7 +55,48 @@
                     </div>
                 {% endif %}
             </div>
+        {% endfor %}
+
+
+    <!-- /*_____________________PAGINATOR_________________*/ -->
+        {% if page_obj.has_other_pages %}
+        <ul style="list-style-type:none;" class="pagination">
+
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a data-page="{{page_obj.previous_page_number}}" href="?page={{page_obj.previous_page_number}}"
+                   class="page-link">&laquo</a>
+            </li>
+            <li class="page-item">
+                <a data-page="1" href="?page=1" class="page-link">First</a>
+            </li>
+            {% endif %}
+
+
+            {% for page in paginator.page_range %}
+            <li class="page-item">
+                {% if page_obj.number == page %}
+                <p style="Color:grey" class="page-link">{{ page }}</p>
+                {% else %}
+                <a class="page-link" href="?page={{page}}">{{ page }}</a>
+                {% endif %}
+            </li>
             {% endfor %}
-        </div>
+
+
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a data-page="{{page_obj.num_pages}}" href="?page={{page_obj.paginator.num_pages}}" class="page-link">Last</a>
+            </li>
+
+            <li class="page-item">
+                <a data-page="{{page_obj.next_page_number}}" href="?page={{page_obj.next_page_number}}"
+                   class="page-link">&raquo</a>
+            </li>
+            {% endif %}
+        </ul>
+        {% endif %}
+
+
 
 {% endblock middle %}

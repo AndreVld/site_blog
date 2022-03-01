@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block middle %}
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <p> Вы действительно хотите удалить <span>"{{ object }}"</span>?</p>
+        <input type="submit" value="Удалить">
+    </form>
+
+
+
+{% endblock %}
