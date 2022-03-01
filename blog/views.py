@@ -1,12 +1,12 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from blog.forms import CreateUpdatePost
 from blog.models import Posts
 
 
-class ListPosts(ListView):
+class ListPostsView(ListView):
     template_name = 'blog/posts.html'
     paginate_by = 1
 
@@ -14,7 +14,7 @@ class ListPosts(ListView):
         return Posts.objects.filter(active=True, featured=True)
 
 
-class CreatePost(LoginRequiredMixin, CreateView):
+class CreatePostView(LoginRequiredMixin, CreateView):
     form_class = CreateUpdatePost
     template_name = 'blog/create_update_post.html'
     success_url = reverse_lazy('blog:posts')
@@ -27,7 +27,7 @@ class CreatePost(LoginRequiredMixin, CreateView):
         }
 
 
-class UpdatePost(LoginRequiredMixin, UpdateView):
+class UpdatePostView(LoginRequiredMixin, UpdateView):
     form_class = CreateUpdatePost
     template_name = 'blog/create_update_post.html'
     success_url = reverse_lazy('blog:posts')
@@ -39,3 +39,9 @@ class UpdatePost(LoginRequiredMixin, UpdateView):
         if not queryset:
             queryset = self.get_queryset()
         return get_object_or_404(queryset, slug=self.kwargs['slug'])
+
+
+class DeletePostView(LoginRequiredMixin, DeleteView):
+    model = Posts
+    template_name = 'blog/delete_post.html'
+    success_url = reverse_lazy('blog:posts')

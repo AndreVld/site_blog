@@ -43,6 +43,7 @@
                     <a class="link_read_more" target="_blank" href="#">Read more</a>
                     {% if post.author == user %}
                         <a class="link_read_more" target="_blank" href="{% url 'blog:update_post' post.slug  %}">|Edit</a>
+                         <a class="link_read_more" href="{% url 'blog:delete_post' post.slug  %}">|Delete</a>
                     {% endif %}
                 </div>
 
