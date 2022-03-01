@@ -14,6 +14,13 @@ class ListPostsView(ListView):
         return Posts.objects.filter(active=True, featured=True)
 
 
+class ListPostUserView(ListView):
+    template_name = 'blog/posts_users.html'
+
+    def get_queryset(self):
+        return Posts.objects.filter(author=self.request.user, active=True, featured=True)
+
+
 class CreatePostView(LoginRequiredMixin, CreateView):
     form_class = CreateUpdatePost
     template_name = 'blog/create_update_post.html'
