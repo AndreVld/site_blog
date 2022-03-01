@@ -4,7 +4,7 @@
 
 {% block middle %}
 
-    <div class="content">
+
 
         {% for post in object_list %}
             <div class="post">
@@ -36,11 +36,11 @@
                     </p>
                 {% else %}
                     <p class="post_intro">
-                            {{ post.body|truncatewords:50}}
+                            {{ post.body|safe|truncatewords:50}}
                     </p>
                 {% endif %}
                 <div class="read_more">
-                    <a class="link_read_more" target="_blank" href="#">Read more</a>
+                    <a class="link_read_more" target="_blank" href="{% url 'blog:read_post' post.slug %}">Read more</a>
                     {% if post.author == user %}
                         <a class="link_read_more" target="_blank" href="{% url 'blog:update_post' post.slug  %}">|Edit</a>
                          <a class="link_read_more" href="{% url 'blog:delete_post' post.slug  %}">|Delete</a>
@@ -97,6 +97,6 @@
         </ul>
         {% endif %}
 
-    </div>
+
 
 {% endblock middle %}
