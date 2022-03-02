@@ -5,11 +5,14 @@ from .models import Posts, Tags
 
 
 class PostFilter(FilterSet):
-    headline = CharFilter(field_name='headline', lookup_expr='icontains', label='')
+    headline = CharFilter(field_name='headline', lookup_expr='icontains', label='', widget=forms.TextInput(
+        attrs={'class': 'field_filter'})
+                          )
+
     tags = ModelMultipleChoiceFilter(queryset=Tags.objects.all(),
                                      widget=forms.CheckboxSelectMultiple(attrs={'class': 'list_categories'})
                                      )
 
     class Meta:
         model = Posts
-        fields = ('headline', 'author', 'tags')
+        fields = ('headline', 'tags')

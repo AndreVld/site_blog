@@ -10,7 +10,7 @@ from .filters import PostFilter
 
 class ListPostsView(ListView):
     template_name = 'blog/posts.html'
-    paginate_by = 4
+    paginate_by = 2
 
     def get_queryset(self):
         queryset = Posts.objects.filter(active=True, featured=True).order_by('-created_date')
@@ -27,6 +27,7 @@ class ListPostsView(ListView):
 
 class DetailPostView(DetailView):
     template_name = 'blog/read_post.html'
+    context_object_name = 'obj_post'
 
     def get_object(self, queryset=None):
         return Posts.objects.select_related('author').get(slug=self.kwargs['slug'])
@@ -64,7 +65,7 @@ class CreatePostView(LoginRequiredMixin, CreateView):
 class UpdatePostView(LoginRequiredMixin, UpdateView):
     form_class = CreateUpdatePost
     template_name = 'blog/create_update_post.html'
-    success_url = reverse_lazy('blog:posts')
+    success_url = reverse_lazy('blog:posts_user')
 
     def get_queryset(self):
         return Posts.objects.filter(author=self.request.user)
@@ -78,4 +79,4 @@ class UpdatePostView(LoginRequiredMixin, UpdateView):
 class DeletePostView(LoginRequiredMixin, DeleteView):
     model = Posts
     template_name = 'blog/delete_post.html'
-    success_url = reverse_lazy('blog:posts')
+    success_url = reverse_lazy('blog:posts_user')

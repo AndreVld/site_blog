@@ -23,13 +23,12 @@
         <div class=" left scrollbar">
 
             <div class="block_caterory">
-                <div class="categories">ПОИСК ПО ТЕГАМ</div>
+                <div class="categories">SEARCH TO TAGS</div>
 
                 <form action="" method="GET">
                     {{ post_filter.form.tags}}
-                    <input class="teg" type="submit" value="Поиск">
+                    <input  class="btn_tags" type="submit" value="SEARCH">
                 </form>
-
             </div>
 
             <div class="block_caterory">
@@ -67,30 +66,25 @@
 
                 <div class="top">
                     <form action="" method="GET">
-                        {{ post_filter.form.headline}}
-                        <input class="teg" type="submit" value="Поиск">
+                            {{ post_filter.form.headline}}
+                        <input class="search_btn" type="submit" value="SEARCH">
                     </form>
                 </div>
-
-
             {% block middle %}
             {% endblock middle  %}
+
         </div>
 
     {% endblock read_post  %}
     <!-- /*_____________________RIGHT_________________*/ -->
     <div class=" right scrollbar">
-
             <a href="{% url 'blog:posts' %}">posts</a>
             <a href="{% url 'blog:create_post' %}">create post</a>
 
-        {% if user.is_authenticated or object %}
-
-
-
+        {% if user.is_authenticated or obj_post %}
             <img class="profile-pic" src="{% static 'images/default_ava.jpg' %}" alt="">
 
-            <div class="fullname">{% firstof object.author.get_full_name object.author user.get_full_name user %}</div>
+            <div class="fullname">{% firstof obj_post.author.get_full_name obj_post.author user.get_full_name user %}</div>
 
             <ul class="block_social">
                 <li class="social_link">
@@ -111,14 +105,14 @@
             </ul>
             <div class="user_info">
 
-                {% if object.author %}
+                {% if obj_post.author %}
 
                     <div class="user_label">Username</div>
-                        <div class="user_date"># {{ object.author }}</div>
+                        <div class="user_date"># {{ obj_post.author }}</div>
                     <div class="user_label">Email</div>
-                        <div class="user_date">{{ object.author.email }}</div>
+                        <div class="user_date">{{ obj_post.author.email }}</div>
                     <div class="user_label">About me</div>
-                        <div style="font-family: cursive" class="user_date"> {{ object.author.about_me }}</div>
+                        <div style="font-family: cursive" class="user_date"> {{ obj_post.author.about_me }}</div>
 
                 {% else %}
 

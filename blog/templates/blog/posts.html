@@ -5,8 +5,9 @@
 {% block middle %}
 
 
-
+        <div class="content">
         {% for post in object_list %}
+
             <div class="post">
 
                 <div class="block_author">
@@ -56,9 +57,10 @@
                 {% endif %}
             </div>
         {% endfor %}
-
+        </div>
 
     <!-- /*_____________________PAGINATOR_________________*/ -->
+    <div class="block_paginator">
         {% if page_obj.has_other_pages %}
         <ul style="list-style-type:none;" class="pagination">
 
@@ -76,7 +78,7 @@
             {% for page in paginator.page_range %}
             <li class="page-item">
                 {% if page_obj.number == page %}
-                <p style="Color:grey" class="page-link">{{ page }}</p>
+                <p  class="active_page page-link">{{ page }}</p>
                 {% else %}
                 <a class="page-link" href="?page={{page}}">{{ page }}</a>
                 {% endif %}
@@ -96,6 +98,7 @@
             {% endif %}
         </ul>
         {% endif %}
+    </div>
 
 
 

@@ -11,16 +11,16 @@
                             </span>
                     </div>
                 </div>
-            {% if object.image %}
-                <img class="read_post_image_prev" src="{{object.image.url}}" alt="">
+            {% if obj_post.image %}
+                <img class="read_post_image_prev" src="{{obj_post.image.url}}" alt="">
             {% endif %}
 
 
-            <h1 class="text_post headline ">{{ object.headline }}</h1>
-            {% if object.sub_headline is not none %}
-            <h4 class="text_post sub_headline ">{{ object.sub_headline }}</h4>
+            <h1 class="text_post headline ">{{ obj_post.headline }}</h1>
+            {% if obj_post.sub_headline is not none %}
+            <h4 class="text_post sub_headline ">{{ obj_post.sub_headline }}</h4>
             {% endif%}
-            <p style="margin: 0px 10px 0px 22px;">{{ object.body|safe }}</p>
+            <p style="margin: 0px 10px 0px 22px;">{{ obj_post.body|safe }}</p>
 
 
     </div>
