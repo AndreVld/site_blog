@@ -1,6 +1,6 @@
 from django.db import models
 from pytils.translit import slugify
-from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 # Create your models here.
 from users.models import AdvUser
@@ -24,7 +24,7 @@ class Posts(models.Model):
     image = models.ImageField(blank=True, null=True, upload_to='images')
     headline = models.CharField(max_length=200, verbose_name='Заголовок')
     sub_headline = models.CharField(max_length=200, null=True, blank=True, verbose_name='Подзаголовок')
-    body = RichTextField(null=True, blank=True, verbose_name='Пост')
+    body = RichTextUploadingField(null=True, blank=True, verbose_name='Пост')
     tags = models.ManyToManyField(Tags, blank=True, null=True)
     featured = models.BooleanField(default=False, verbose_name='Опубликовать сразу?')
     active = models.BooleanField(default=False, verbose_name='Активен?')

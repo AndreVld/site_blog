@@ -5,8 +5,9 @@
 {% block middle %}
 
 
-
+        <div class="content">
         {% for post in object_list %}
+
             <div class="post">
 
                 <div class="block_author">
@@ -35,12 +36,12 @@
                         {{ post.sub_headline|capfirst }}
                     </p>
                 {% else %}
-                    <p class="post_intro">
-                            {{ post.body|safe|truncatewords:50}}
-                    </p>
+                    <div style=" margin: 12px 10px 0px 20px; " >
+                            {{ post.body|safe|truncatewords:50|escape}}
+                    </div>
                 {% endif %}
                 <div class="read_more">
-                    <a class="link_read_more" target="_blank" href="{% url 'blog:read_post' post.slug %}">Read more</a>
+                    <a class="link_read_more" target="_blank" href="{% url 'blog:read_post' post.slug %}">Read</a>
                     {% if post.author == user %}
                         <a class="link_read_more" target="_blank" href="{% url 'blog:update_post' post.slug  %}">|Edit</a>
                          <a class="link_read_more" href="{% url 'blog:delete_post' post.slug  %}">|Delete</a>
@@ -56,9 +57,10 @@
                 {% endif %}
             </div>
         {% endfor %}
-
+        </div>
 
     <!-- /*_____________________PAGINATOR_________________*/ -->
+    <div class="block_paginator">
         {% if page_obj.has_other_pages %}
         <ul style="list-style-type:none;" class="pagination">
 
@@ -76,7 +78,7 @@
             {% for page in paginator.page_range %}
             <li class="page-item">
                 {% if page_obj.number == page %}
-                <p style="Color:grey" class="page-link">{{ page }}</p>
+                <p  class="active_page page-link">{{ page }}</p>
                 {% else %}
                 <a class="page-link" href="?page={{page}}">{{ page }}</a>
                 {% endif %}
@@ -96,6 +98,7 @@
             {% endif %}
         </ul>
         {% endif %}
+    </div>
 
 
 

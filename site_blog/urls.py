@@ -22,6 +22,8 @@ from site_blog import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls'), name='users'),
+
+    path('ckeditor/', include('ckeditor_uploader.urls'), name='users'),
 ]
 
 
