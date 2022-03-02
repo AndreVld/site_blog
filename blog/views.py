@@ -4,7 +4,8 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from blog.forms import CreateUpdatePost
 from blog.models import Posts
-from users.models import AdvUser
+
+from .filters import PostFilter
 
 
 class ListPostsView(ListView):
@@ -12,7 +13,16 @@ class ListPostsView(ListView):
     paginate_by = 4
 
     def get_queryset(self):
-        return Posts.objects.filter(active=True, featured=True)
+        queryset = Posts.objects.filter(active=True, featured=True).order_by('-created_date')
+        post_filter = PostFilter(self.request.GET, queryset=queryset)
+        posts = post_filter.qs
+        return posts
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ListPostsView, self).get_context_data(**kwargs)
+        post_filter = PostFilter()
+        context['post_filter'] = post_filter
+        return context
 
 
 class DetailPostView(DetailView):
@@ -21,18 +31,14 @@ class DetailPostView(DetailView):
     def get_object(self, queryset=None):
         return Posts.objects.select_related('author').get(slug=self.kwargs['slug'])
 
-    # def get_context_data(self, **kwargs):
-    #     context = super(DetailPostView, self).get_context_data(**kwargs)
-    #     context['post_author'] = AdvUser.objects.get(username=self.object.author)
-    #     return context
-
 
 class ListPostUserView(LoginRequiredMixin, ListView):
     template_name = 'blog/posts_users.html'
 
     def get_queryset(self):
-        return Posts.objects.filter(author=self.request.user)
-
+        queryset = Posts.objects.filter(author=self.request.user).order_by('-updated_date')
+        print(queryset)
+        return queryset
 
 class CreatePostView(LoginRequiredMixin, CreateView):
     form_class = CreateUpdatePost

@@ -40,7 +40,7 @@
     top: 0;
     height:100vh;
     background:  linear-gradient(#757676, #121314);
-    opacity: 0.85;
+    opacity: 0.90;
     flex-basis: 0;
     overflow-y: scroll;
 }
@@ -90,7 +90,6 @@
     font-size: 16px;
     line-height: 19px;
 }
-
 
 /*_____________________MIDDLE_________________*/
 
@@ -199,13 +198,7 @@
 	background-color: #f0eeee;
 }
 
-
-
-
-
-
-
-
+/*_____________________Detail_post_________________*/
 .read_post{
     flex-grow: 7.35;
     flex-basis: 0;
@@ -236,17 +229,18 @@
 /*_____________________LIST_POSTS_USER_________________*/
 
 .wrapper{
-
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    
 }
 
 .post_mini{
     border-radius: 5px;
-    margin-top: 4px;
-    max-width: 445px;
-    max-height: 700px;
+    margin: 0 auto;
+    margin-top: 7px;
+    margin-left: 13px;
+    width: 440px;
+    height: 550px;
     border: 1px solid black;
     background-color: rgb(156, 179, 134);
     box-sizing: border-box;
@@ -280,8 +274,8 @@
 }
 
 .fullname{
-    font-weight: bold;
-    font-size: 18px;
+    font-family: 'Russo One';
+    font-size: 15px;
     line-height: 19px;
     margin: 10px 20px;
 }
@@ -309,18 +303,17 @@
 }
 
 .user_label{
-    font-size: 12px;
+    font-size: 14px;
     line-height: 14px;
     font-family: Lato;
 }
 
 .user_date{
     margin-bottom: 21px;
-    font-family: cursive;
+    font-family: 'Russo One';
     font-size: 16px;
     line-height: 19px;
 }
-
 /*_____________________crispy_forms_________________*/
 
 :active, :hover, :focus {
@@ -363,4 +356,15 @@
 .form-group{
     margin-bottom: 15px;
 }
+
+/*_____________________Filters_________________*/
+
+#id_tags > li{
+    margin-bottom: 10px;
+    font-family: Lato;
+    font-weight: bold;
+    font-size: 16px;
+    color: #B5B5B5;
+}
+
 

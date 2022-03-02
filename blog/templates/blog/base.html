@@ -1,4 +1,5 @@
 {% load static %}
+{% load crispy_forms_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +15,7 @@
     <title>base</title>
 
 </head>
+
 <div class="container">
     {% block read_post %}
 
@@ -21,24 +23,12 @@
         <div class=" left scrollbar">
 
             <div class="block_caterory">
-                <div class="categories">CATEGORIES</div>
-                <ul class="list_categories">
-                    <li class="cat"><a class="link_sub" href="#"># name</a>
-                        <div> 12</div>
-                    </li>
-                    <li class="cat"><a class="link_sub" href="#"># name</a>
-                        <div> 12</div>
-                    </li>
-                    <li class="cat"><a class="link_sub" href="#"># name</a>
-                        <div> 12</div>
-                    </li>
-                    <li class="cat"><a class="link_sub" href="#"># name</a>
-                        <div> 12</div>
-                    </li>
-                    <li class="cat"><a class="link_sub" href="#"># name</a>
-                        <div> 12</div>
-                    </li>
-                </ul>
+                <div class="categories">TAGS</div>
+
+                <form action="" method="GET">
+                    {{ post_filter.form.tags}}
+                    <input class="teg" type="submit" value="Поиск">
+                </form>
 
             </div>
 
@@ -74,7 +64,13 @@
 
 
         <div class=" mid">
-            <div class="top"></div>
+            <div class="top">
+
+                <form action="" method="GET">
+                    {{ post_filter.form.headline}}
+                    <input class="teg" type="submit" value="Поиск">
+                </form>
+            </div>
             {% block middle %}
             {% endblock middle  %}
         </div>
@@ -86,9 +82,9 @@
             <a href="{% url 'blog:posts' %}">posts</a>
             <a href="{% url 'blog:create_post' %}">create post</a>
 
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated or object %}
 
-                <a href="{% url 'blog:posts_user' %}">My post</a>
+
 
             <img class="profile-pic" src="{% static 'images/default_ava.jpg' %}" alt="">
 
@@ -120,18 +116,18 @@
                     <div class="user_label">Email</div>
                         <div class="user_date">{{ object.author.email }}</div>
                     <div class="user_label">About me</div>
-                        <div class="user_date"> {{ object.author.about_me }}</div>
+                        <div style="font-family: cursive" class="user_date"> {{ object.author.about_me }}</div>
 
                 {% else %}
 
                     <div class="user_label">Username</div>
-                        <div class="user_date"># {{ user }}</div>
+                        <div class="user_date"># {{ user }}<a href="{% url 'blog:posts_user' %}"> My post</a></div>
+
                     <div class="user_label">Email</div>
                         <div class="user_date">{{ user.email }}</div>
                     <div class="user_label">About me</div>
-                        <div class="user_date"> {{ user.about_me }}</div>
+                        <div style="font-family: cursive" class="user_date"> {{ user.about_me }}</div>
                 {% endif %}
-
         {% endif %}
 
         </div>

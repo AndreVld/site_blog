@@ -13,13 +13,13 @@
                 </div>
 
         <img class="read_post_image_prev" src="{{object.image.url}}" alt="">
-        <div>
+
             <h1 class="text_post headline ">{{ object.headline }}</h1>
             {% if object.sub_headline is not none %}
             <h4 class="text_post sub_headline ">{{ object.sub_headline }}</h4>
             {% endif%}
-            <p>{{ object.body|safe }}</p>
-        </div>
+            <p style="margin: 0px 10px 0px 22px;">{{ object.body|safe }}</p>
+
 
     </div>
 

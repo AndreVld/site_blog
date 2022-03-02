@@ -17,10 +17,6 @@
                     <p class="post_intro">
                         {{ post.sub_headline|capfirst }}
                     </p>
-                {% else %}
-                    <p class="post_intro">
-                            {{ post.body|truncatewords:10}}
-                    </p>
                 {% endif %}
                 {% if post.tags.all.exists %}
                     <div class="blog_tags">

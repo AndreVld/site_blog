@@ -35,9 +35,9 @@
                         {{ post.sub_headline|capfirst }}
                     </p>
                 {% else %}
-                    <p class="post_intro">
-                            {{ post.body|safe|truncatewords:50}}
-                    </p>
+                    <div style=" margin: 12px 10px 0px 20px; " >
+                            {{ post.body|safe|truncatewords:50|escape}}
+                    </div>
                 {% endif %}
                 <div class="read_more">
                     <a class="link_read_more" target="_blank" href="{% url 'blog:read_post' post.slug %}">Read more</a>
