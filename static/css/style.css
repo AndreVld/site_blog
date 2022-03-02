@@ -325,6 +325,10 @@
     width: 95%;
 	margin: 0 auto;
     font-size: 17px;
+    flex-grow: 7.35;
+    flex-basis: 0;
+    
+    padding: 20px 50px 0 50px;
 }
 
 #id_headline >{
@@ -332,12 +336,24 @@
 }
 
 #div_id_tags > div{
-    max-height : 100px;
+    max-height : 300px;
     overflow-y : scroll;
-    border : 1px solid #888;
+    border : 2px solid #888;
     padding : 5px;
     border-radius : 5px;
+    font-family: Russo One;
 }
+
+
+#div_id_tags > div::-webkit-scrollbar {
+    width: 7px;
+}
+
+#div_id_tags > div::-webkit-scrollbar-thumb {
+    background: linear-gradient( #7b8793, #9fc1ef);
+    border-radius: 10px;
+}
+
 
 .textinput{
 

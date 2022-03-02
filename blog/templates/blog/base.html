@@ -23,7 +23,7 @@
         <div class=" left scrollbar">
 
             <div class="block_caterory">
-                <div class="categories">TAGS</div>
+                <div class="categories">ПОИСК ПО ТЕГАМ</div>
 
                 <form action="" method="GET">
                     {{ post_filter.form.tags}}
@@ -64,13 +64,15 @@
 
 
         <div class=" mid">
-            <div class="top">
 
-                <form action="" method="GET">
-                    {{ post_filter.form.headline}}
-                    <input class="teg" type="submit" value="Поиск">
-                </form>
-            </div>
+                <div class="top">
+                    <form action="" method="GET">
+                        {{ post_filter.form.headline}}
+                        <input class="teg" type="submit" value="Поиск">
+                    </form>
+                </div>
+
+
             {% block middle %}
             {% endblock middle  %}
         </div>

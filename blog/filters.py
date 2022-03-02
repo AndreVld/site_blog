@@ -12,4 +12,4 @@ class PostFilter(FilterSet):
 
     class Meta:
         model = Posts
-        fields = ('headline', 'tags')
+        fields = ('headline', 'author', 'tags')

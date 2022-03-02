@@ -37,8 +37,16 @@ class ListPostUserView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         queryset = Posts.objects.filter(author=self.request.user).order_by('-updated_date')
-        print(queryset)
-        return queryset
+        post_filter = PostFilter(self.request.GET, queryset=queryset)
+        posts = post_filter.qs
+        return posts
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ListPostUserView, self).get_context_data(**kwargs)
+        post_filter = PostFilter()
+        context['post_filter'] = post_filter
+        return context
+
 
 class CreatePostView(LoginRequiredMixin, CreateView):
     form_class = CreateUpdatePost

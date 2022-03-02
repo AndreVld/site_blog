@@ -11,8 +11,10 @@
                             </span>
                     </div>
                 </div>
+            {% if object.image %}
+                <img class="read_post_image_prev" src="{{object.image.url}}" alt="">
+            {% endif %}
 
-        <img class="read_post_image_prev" src="{{object.image.url}}" alt="">
 
             <h1 class="text_post headline ">{{ object.headline }}</h1>
             {% if object.sub_headline is not none %}
