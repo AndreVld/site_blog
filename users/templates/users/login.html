@@ -21,13 +21,12 @@
                   color:rgb(218, 42, 42);
                   list-style-type: none;
                   font-size: 20px;
-
                 }
 
 </style>
 
 
-<div class="form_container">
+<div style="margin-top: 10vh;" class="form_container">
     {% if not user.is_authenticated %}
     <form class="register_form" action="" method="post">
         {% csrf_token %}

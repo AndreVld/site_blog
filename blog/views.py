@@ -14,6 +14,8 @@ class ListPostsView(ListView):
 
     def get_queryset(self):
         queryset = Posts.objects.filter(active=True, featured=True).order_by('-created_date')
+        if self.kwargs:
+            queryset = queryset.filter(author__username=self.kwargs['author'])
         post_filter = PostFilter(self.request.GET, queryset=queryset)
         posts = post_filter.qs
         return posts
