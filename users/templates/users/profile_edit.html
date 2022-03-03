@@ -1,0 +1,44 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+
+{% block middle %}
+
+<style type="text/css">
+                .asteriskField {
+                    display: none;
+                }
+                .form-group{
+                    font-family: 'Russo One';
+                    font-size: 20px;
+                }
+                .textarea{
+                    width: 100%;
+                    font-size: 15px;
+                    font-family: cursive;
+                    padding : 5px;
+                    border-radius: 5px;
+                    box-sizing: border-box;
+                    resize:vertical;
+                }
+                .invalid-feedback{
+                    color:red;
+                }
+
+</style>
+
+
+<div class="form_container">
+    {% if user.is_authenticated %}
+    <form class="register_form" action="" method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input class="teg" type="submit" value="Save">
+    </form>
+    {% endif %}
+</div>
+
+
+{% endblock %}
