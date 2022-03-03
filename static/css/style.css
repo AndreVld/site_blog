@@ -256,7 +256,6 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    
 }
 
 .post_image_prev_for_post_mini{
@@ -279,11 +278,16 @@
     flex-basis: 0;
 }
 
-
-.profile-pic{
+.block_picture_user{
     width: 100%;
+    padding-left: 7px;
+    box-sizing: border-box;
+}
+.profile-pic{
+    max-width: 100%;
     height: auto;
-    border-radius: 3px;
+    object-fit: cover;
+    border-radius: 5px;
 }
 
 .fullname{
@@ -335,12 +339,12 @@
 }
 
 .form_container{
-    width: 95%;
-	margin: 0 auto;
+    margin-top: 40px;
+    max-width: 100%;
     font-size: 17px;
     flex-grow: 7.35;
     flex-basis: 0;
-    
+    box-sizing: border-box;
     padding: 20px 50px 0 50px;
 }
 
@@ -358,6 +362,7 @@
 }
 
 
+
 #div_id_tags > div::-webkit-scrollbar {
     width: 7px;
 }
@@ -368,19 +373,21 @@
 }
 
 
-.textinput{
-
+.textinput,.emailinput{
     border: none;
 	width: 100%;
     padding: 10px 0 10px 15px ;
 	border-radius: 5px;
 	font-size: 19px;
     box-sizing: border-box;
+
 }
 
-.textinput:focus{
+
+.textinput:focus,.emailinput:focus{
     box-shadow: 3px 8px 6px rgb(174, 188, 201);
 }
+
 
 .form-group{
     margin-bottom: 15px;

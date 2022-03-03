@@ -3,7 +3,12 @@
 {% load static %}
 
 {% block middle %}
-
+     <div class="top">
+                    <form action="" method="GET">
+                            {{ post_filter.form.headline}}
+                        <input class="search_btn" type="submit" value="SEARCH">
+                    </form>
+     </div>
 
         <div class="content">
         {% for post in object_list %}
@@ -37,7 +42,7 @@
                     </p>
                 {% else %}
                     <div style=" margin: 12px 10px 0px 20px; " >
-                            {{ post.body|safe|truncatewords:50|escape}}
+                            {{ post.body|safe|truncatewords:50}}
                     </div>
                 {% endif %}
                 <div class="read_more">

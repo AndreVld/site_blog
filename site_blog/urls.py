@@ -21,11 +21,11 @@ from site_blog import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('blog.urls'), name='users'),
+    path('', include('blog.urls')),
+    path('users/', include('users.urls')),
 
-    path('ckeditor/', include('ckeditor_uploader.urls'), name='users'),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
-
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

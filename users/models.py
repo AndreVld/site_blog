@@ -11,7 +11,7 @@ class AdvUser(AbstractUser):
     image = models.ImageField(upload_to='users_images', blank=True, null=True)
     about_me = models.TextField(verbose_name='Обо мне', max_length=512, blank=True)
     is_confirmed = models.BooleanField(default=True, verbose_name='Подтвердил почту?')
-    show_email = models.BooleanField(default=False, verbose_name='Email скрыт?')
+    show_email = models.BooleanField(default=True, verbose_name='Email скрыт?')
 
     class Meta:
         verbose_name = 'Пользователь'
