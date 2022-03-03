@@ -6,7 +6,7 @@
     <div class="read_post">
      <div class="block_author">
                     <div>
-                        <a href="#" class="link_author">{{ object.author }}</a>
+                        <a href="{% url 'blog:posts_author' object.author %}" class="link_author">{{ object.author }}</a>
                         <span class="time"> {{ object.created_date|timesince }} назад
                             </span>
                     </div>
@@ -21,7 +21,6 @@
             <h4 class="text_post sub_headline ">{{ obj_post.sub_headline }}</h4>
             {% endif%}
             <p style="margin: 0px 10px 0px 22px;">{{ obj_post.body|safe }}</p>
-
 
     </div>
 

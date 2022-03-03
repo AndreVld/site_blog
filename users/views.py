@@ -2,9 +2,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import  get_object_or_404
 
-# Create your views here.
 from .forms import RegistrationForm, EditProfileForm
 from .models import AdvUser
 
