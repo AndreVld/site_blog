@@ -37,8 +37,8 @@
         {{ form|crispy }}
         <input class="teg" type="submit" value="Save">
     </form>
+    <a class="teg" href="{% url 'users:delete_profile' %}">Delete profile</a>
     {% endif %}
 </div>
-
 
 {% endblock %}
