@@ -1,8 +1,10 @@
+from django.contrib.auth import logout
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordResetView, \
+    PasswordResetDoneView, PasswordResetConfirmView
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from django.shortcuts import  get_object_or_404
+from django.shortcuts import get_object_or_404
 
 from .forms import RegistrationForm, EditProfileForm
 from .models import AdvUser
@@ -39,4 +41,51 @@ class EditProfileView(LoginRequiredMixin, UpdateView):
 
 
 class DeleteUserView(LoginRequiredMixin, DeleteView):
-    template_name = 'users/'
+    template_name = 'users/delete_profile.html'
+    model = AdvUser
+    success_url = reverse_lazy('blog:posts')
+
+    def setup(self, request, *args, **kwargs):
+        self.user_id = request.user.pk
+        return super(DeleteUserView, self).setup(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        logout(request)
+        # messages.success(request, 'Пользователь удален!')
+        return super(DeleteUserView, self).post(request, *args, **kwargs)
+
+    def get_object(self, queryset=None):
+        if not queryset:
+            queryset = self.get_queryset()
+        return get_object_or_404(queryset, pk=self.user_id)
+
+
+class ChangePasswordUserView(LoginRequiredMixin, PasswordChangeView):
+    template_name = 'users/password_change.html'
+    success_url = reverse_lazy('users:profile_edit')
+
+
+##################################____PASSWORD_RESET___##########################################
+
+
+class UserPasswordResetView(PasswordResetView):
+    template_name = 'users/password_reset/password_reset.html'
+    subject_template_name = 'users/password_reset/reset_subject.txt'
+    email_template_name = 'users/password_reset/reset_email.txt'
+    success_url = reverse_lazy('users:password_reset_done')
+
+    def form_valid(self, form):
+        email = form.cleaned_data['email']
+        if AdvUser.objects.filter(email=email).exists():
+            return super(UserPasswordResetView, self).form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+
+class UserPasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'users/password_reset/email_sent.html'
+
+
+class UserPasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = 'users/password_reset/confirm_password.html'
+    success_url = reverse_lazy('users:login')

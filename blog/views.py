@@ -10,7 +10,7 @@ from .filters import PostFilter
 
 class ListPostsView(ListView):
     template_name = 'blog/posts.html'
-    paginate_by = 2
+    paginate_by = 10
 
     def get_queryset(self):
         queryset = Posts.objects.filter(active=True, featured=True).order_by('-created_date')

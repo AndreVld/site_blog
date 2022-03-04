@@ -10,18 +10,14 @@
                 .asteriskField {
                     display: none;
                 }
-                .form-group{
-                    font-family: 'Russo One';
-                    font-size: 20px;
-                }
-                #hint_id_password1 > ul{
-                    list-style-type: none;
-                }
+
                 .alert-danger > ul{
-                  color:rgb(218, 42, 42);
+                  color:#f13c3c;
                   list-style-type: none;
                   font-size: 20px;
+                  font-family: Russo One;
                 }
+
 
 </style>
 
@@ -31,8 +27,9 @@
     <form class="register_form" action="" method="post">
         {% csrf_token %}
         {{ form|crispy }}
-        <input class="teg" type="submit" value="Registering">
+        <input class="teg" type="submit" value="login">
     </form>
+    <a class="teg" href="{% url 'users:password_reset' %}">Reset password</a>
     {% endif %}
 </div>
 

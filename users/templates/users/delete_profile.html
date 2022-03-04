@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block middle %}
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <p> Вы действительно хотите удалить профиль <span>"{{ object }}"</span>?</p>
+        <input type="submit" value="Delete">
+    </form>
+        <a  href="{% url 'users:profile_edit' %}">return</a>
+{% endblock %}

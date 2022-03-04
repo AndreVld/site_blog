@@ -38,12 +38,8 @@
                 </h1>
                 {% if not post.sub_headline is Null %}
                     <p class="post_intro">
-                        {{ post.sub_headline|capfirst }}
+                        {{ post.sub_headline|truncatewords:55 }}
                     </p>
-                {% else %}
-                    <div style=" margin: 12px 10px 0px 20px; " >
-                            {{ post.body|safe|truncatewords:50}}
-                    </div>
                 {% endif %}
                 <div class="read_more">
                     <a class="link_read_more" target="_blank" href="{% url 'blog:read_post' post.slug %}">Read</a>
