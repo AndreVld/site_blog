@@ -10,10 +10,6 @@
                 .asteriskField {
                     display: none;
                 }
-                .form-group{
-                    font-family: 'Russo One';
-                    font-size: 20px;
-                }
                 .textarea{
                     width: 100%;
                     font-size: 15px;
@@ -22,9 +18,6 @@
                     border-radius: 5px;
                     box-sizing: border-box;
                     resize:vertical;
-                }
-                .invalid-feedback{
-                    color:red;
                 }
 
 </style>
@@ -37,6 +30,7 @@
         {{ form|crispy }}
         <input class="teg" type="submit" value="Save">
     </form>
+    <a class="teg" href="{% url 'users:change_password' %}">Change password</a>
     <a class="teg" href="{% url 'users:delete_profile' %}">Delete profile</a>
     {% endif %}
 </div>

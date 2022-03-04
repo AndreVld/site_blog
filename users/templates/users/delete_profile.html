@@ -6,8 +6,7 @@
     <form action="" method="POST">
         {% csrf_token %}
         <p> Вы действительно хотите удалить профиль <span>"{{ object }}"</span>?</p>
-        <input type="submit" value="Удалить">
+        <input type="submit" value="Delete">
     </form>
         <a  href="{% url 'users:profile_edit' %}">return</a>
-
 {% endblock %}

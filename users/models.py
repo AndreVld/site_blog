@@ -6,8 +6,7 @@ from django.db import models
 
 
 class AdvUser(AbstractUser):
-    email = models.EmailField(verbose_name='Email адрес', unique=True, error_messages={
-        'unique': "A user with that Email already exists."})
+    email = models.EmailField(verbose_name='Email адрес', unique=True,)
     image = models.ImageField(upload_to='users_images', blank=True, null=True)
     about_me = models.TextField(verbose_name='Обо мне', max_length=512, blank=True)
     is_confirmed = models.BooleanField(default=True, verbose_name='Подтвердил почту?')

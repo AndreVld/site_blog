@@ -154,7 +154,7 @@
 
 .post_image_prev{
     width: 100%;
-    max-height: 800px;
+    max-height: 650px;
     border-radius: 5px;
     object-fit: cover;
 }
@@ -362,8 +362,6 @@
     font-family: Russo One;
 }
 
-
-
 #div_id_tags > div::-webkit-scrollbar {
     width: 7px;
 }
@@ -384,14 +382,22 @@
 
 }
 
-
 .textinput:focus,.emailinput:focus,.field_filter:focus{
     box-shadow: 3px 8px 6px rgb(174, 188, 201);
 }
 
-
 .form-group{
+    font-family: 'Russo One';
+    font-size: 20px;
     margin-bottom: 15px;
+}
+
+.invalid-feedback{
+    color:#f13c3c;
+}
+
+#hint_id_password1 > ul{
+    list-style-type: none;
 }
 
 /*_____________________Filters_________________*/
