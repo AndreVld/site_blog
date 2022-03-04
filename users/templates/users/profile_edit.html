@@ -24,7 +24,6 @@
 
 
 <div class="form_container">
-    {% if user.is_authenticated %}
     <form class="register_form" action="" method="post">
         {% csrf_token %}
         {{ form|crispy }}
@@ -32,7 +31,6 @@
     </form>
     <a class="teg" href="{% url 'users:change_password' %}">Change password</a>
     <a class="teg" href="{% url 'users:delete_profile' %}">Delete profile</a>
-    {% endif %}
 </div>
 
 {% endblock %}
