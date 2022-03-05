@@ -19,6 +19,11 @@
                     box-sizing: border-box;
                     resize:vertical;
                 }
+                .alert-block > ul{
+                    list-style-type:none;
+                    color: #f13c3c;
+                    font-family: Russo One ;
+                }
 
 </style>
 
@@ -27,7 +32,13 @@
     <form class="register_form" action="" method="post">
         {% csrf_token %}
         {{ form|crispy }}
+        {{ formset.management_form }}
+        {% for form_set in formset %}
+            {{ form_set|crispy }}
+        <hr>
+        {% endfor %}
         <input class="teg" type="submit" value="Save">
+
     </form>
     <a class="teg" href="{% url 'users:change_password' %}">Change password</a>
     <a class="teg" href="{% url 'users:delete_profile' %}">Delete profile</a>

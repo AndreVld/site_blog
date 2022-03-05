@@ -1,13 +1,16 @@
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordResetView, \
     PasswordResetDoneView, PasswordResetConfirmView
+from django.forms import inlineformset_factory, HiddenInput
+from django.http import HttpResponseRedirect
 from django.views.generic import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
-from django.shortcuts import get_object_or_404
+from django.urls import reverse_lazy, reverse
+from django.shortcuts import get_object_or_404, render
 
 from .forms import RegistrationForm, EditProfileForm
-from .models import AdvUser
+from .models import AdvUser, Social
 
 
 class LoginUserView(LoginView):
@@ -24,20 +27,36 @@ class RegistrationUserView(CreateView):
     form_class = RegistrationForm
 
 
-class EditProfileView(LoginRequiredMixin, UpdateView):
-    template_name = 'users/profile_edit.html'
-    form_class = EditProfileForm
-    model = AdvUser
-    success_url = reverse_lazy('blog:posts')
+@login_required
+def edit_profile(request):
+    SocialFormSet = inlineformset_factory(AdvUser, Social, fields=('name', 'link',))
+    form = EditProfileForm(instance=request.user)
+    formset = SocialFormSet(instance=request.user)
+    if request.method == 'POST':
+        form = EditProfileForm(instance=request.user, data=request.POST, files=request.FILES)
+        formset = SocialFormSet(request.POST, instance=request.user)
+        if form.is_valid() and formset.is_valid():
+            form.save()
+            formset.save()
+            return HttpResponseRedirect(reverse('users:profile_edit'))
+    context = {'form': form, 'formset': formset}
+    return render(request, 'users/profile_edit.html', context)
 
-    def setup(self, request, *args, **kwargs):
-        self.user_id = request.user.pk
-        return super(EditProfileView, self).setup(request, *args, **kwargs)
 
-    def get_object(self, queryset=None):
-        if not queryset:
-            queryset = self.get_queryset()
-        return get_object_or_404(queryset, pk=self.user_id)
+# class EditProfileView(LoginRequiredMixin, UpdateView):
+#     template_name = 'users/profile_edit.html'
+#     form_class = EditProfileForm
+#     model = AdvUser
+#     success_url = reverse_lazy('blog:posts')
+#
+#     def setup(self, request, *args, **kwargs):
+#         self.user_id = request.user.pk
+#         return super(EditProfileView, self).setup(request, *args, **kwargs)
+#
+#     def get_object(self, queryset=None):
+#         if not queryset:
+#             queryset = self.get_queryset()
+#         return get_object_or_404(queryset, pk=self.user_id)
 
 
 class DeleteUserView(LoginRequiredMixin, DeleteView):
@@ -51,7 +70,6 @@ class DeleteUserView(LoginRequiredMixin, DeleteView):
 
     def post(self, request, *args, **kwargs):
         logout(request)
-        # messages.success(request, 'Пользователь удален!')
         return super(DeleteUserView, self).post(request, *args, **kwargs)
 
     def get_object(self, queryset=None):
@@ -63,9 +81,6 @@ class DeleteUserView(LoginRequiredMixin, DeleteView):
 class ChangePasswordUserView(LoginRequiredMixin, PasswordChangeView):
     template_name = 'users/password_change.html'
     success_url = reverse_lazy('users:profile_edit')
-
-
-##################################____PASSWORD_RESET___##########################################
 
 
 class UserPasswordResetView(PasswordResetView):

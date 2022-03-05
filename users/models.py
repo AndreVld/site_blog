@@ -6,7 +6,7 @@ from django.db import models
 
 
 class AdvUser(AbstractUser):
-    email = models.EmailField(verbose_name='Email адрес', unique=True,)
+    email = models.EmailField(verbose_name='Email адрес', unique=True, )
     image = models.ImageField(upload_to='users_images', blank=True, null=True)
     about_me = models.TextField(verbose_name='Обо мне', max_length=512, blank=True)
     is_confirmed = models.BooleanField(default=True, verbose_name='Подтвердил почту?')
@@ -43,7 +43,11 @@ class Social(models.Model):
     user = models.ForeignKey(AdvUser, on_delete=models.CASCADE, related_name='social')
     name = models.CharField(max_length=64, choices=Names.choices, verbose_name='Social network')
     link = models.URLField(max_length=512, unique=True)
-    image = models.FilePathField(path='static/images/social')
+    image = models.FilePathField(path='static/images/social', blank=True)
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        self.image = f'static/images/social\{self.name}'
+        super(Social, self).save()
 
     def __str__(self):
         return self.name
