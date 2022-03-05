@@ -98,11 +98,13 @@
             </div>
 
             <ul class="block_social">
+                {% for social in user.social.all %}
                 <li class="social_link">
-                    <a href="#">
-                        <img class="social_img" src="facebook-96.png" alt="">
+                    <a target="_blank" href="{{ social.link }}">
+                        <img class="social_img" src="{{ social.image }}" >
                     </a>
                 </li>
+                {% endfor %}
             </ul>
             <div class="user_info">
 
