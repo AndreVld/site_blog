@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordResetView, \
     PasswordResetDoneView, PasswordResetConfirmView
-from django.forms import inlineformset_factory, HiddenInput
+from django.forms import inlineformset_factory
 from django.http import HttpResponseRedirect
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
@@ -29,7 +29,7 @@ class RegistrationUserView(CreateView):
 
 @login_required
 def edit_profile(request):
-    SocialFormSet = inlineformset_factory(AdvUser, Social, fields=('name', 'link',))
+    SocialFormSet = inlineformset_factory(AdvUser, Social, fields=('name', 'link',), extra=1)
     form = EditProfileForm(instance=request.user)
     formset = SocialFormSet(instance=request.user)
     if request.method == 'POST':

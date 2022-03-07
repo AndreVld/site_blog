@@ -27,9 +27,13 @@
     <form class="register_form" action="" method="post">
         {% csrf_token %}
         {{ form|crispy }}
-        <input class="teg" type="submit" value="login">
+        <div style="display : flex; justify-content: space-between;">
+            <input class="btn_" type="submit" value="login">
+
+            <a class="btn_" href="{% url 'users:password_reset' %}">Reset password</a>
+        </div>
     </form>
-    <a class="teg" href="{% url 'users:password_reset' %}">Reset password</a>
+
     {% endif %}
 </div>
 
