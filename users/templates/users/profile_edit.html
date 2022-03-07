@@ -24,24 +24,30 @@
                     color: #f13c3c;
                     font-family: Russo One ;
                 }
+                .block_btn{
+                    display : flex;
+                    justify-content:end ;
+                }
 
 </style>
-
-
-<div class="form_container">
-    <form class="register_form" action="" method="post">
+<div class="form_container" style="margin-top: 0;">
+    <div class="block_btn">
+        <a class="btn_" href="{% url 'users:change_password' %}">Change password</a>
+        <a class=" btn_ delete_btn " style="margin-left: 5px" href="{% url 'users:delete_profile' %}">Delete profile</a>
+    </div>
+    <form class="register_form" action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form|crispy }}
+
         {{ formset.management_form }}
         {% for form_set in formset %}
             {{ form_set|crispy }}
-        <hr>
+            <hr>
         {% endfor %}
-        <input class="teg" type="submit" value="Save">
 
+        <input class="btn_ save_btn" type="submit" value="Save">
     </form>
-    <a class="teg" href="{% url 'users:change_password' %}">Change password</a>
-    <a class="teg" href="{% url 'users:delete_profile' %}">Delete profile</a>
+
 </div>
 
 {% endblock %}
