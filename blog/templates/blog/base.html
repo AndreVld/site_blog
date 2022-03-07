@@ -14,9 +14,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital@1&family=Russo+One&display=swap" rel="stylesheet">
     <title>base</title>
 
-</head>
 
-<div class="container">
+</head>
+<body>
+
+
+<div class="container_">
     {% block read_post %}
 
         <!-- /*_____________________LEFT_________________*/ -->
@@ -76,7 +79,32 @@
 
     <!-- /*_____________________RIGHT_________________*/ -->
     <div class=" right scrollbar">
-                <a href="{% url 'blog:posts' %}">posts|</a>
+        <div class="navbar">
+            <a href="{% url 'blog:posts' %}">Home</a>
+            {% if user.is_authenticated %}
+            <div class="dropdown">
+                <button class="dropbtn" onclick="myFunction()">{{user}}
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content" id="myDropdown">
+                    <a href="{% url 'users:profile_edit' %}">profile_edit</a>
+                    <a href="{% url 'blog:posts_user' %}"> My post</a>
+                    <a href="{% url 'blog:create_post' %}">create post</a>
+
+                </div>
+            </div>
+            <a href="{% url 'users:logout' %}" style="right:1;">Logout</a>
+            {% else %}
+            <a href="{% url 'users:login' %}">Login|</a>
+            <a href="{% url 'users:register' %}">registration</a>
+            {% endif %}
+
+
+        </div>
+
+
+
+        <a href="{% url 'blog:posts' %}">posts|</a>
                 <a href="{% url 'blog:create_post' %}">create post|</a>
 
 
@@ -120,7 +148,7 @@
                 {% else %}
 
                     <div class="user_label">Username</div>
-                        <div class="user_date"># {{ user }}<a href="{% url 'blog:posts_user' %}"> My post</a></div>
+                        <div class="user_date"># {{ user }}</div>
                     <div class="user_label">Email</div>
                         <div class="user_date">{{ user.email }}</div>
                     <div class="user_label">About me</div>
@@ -135,13 +163,29 @@
         {% endif %}
 
         </div>
-
-
     </div>
 </div>
 
-<body>
+<script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+    var myDropdown = document.getElementById("myDropdown");
+      if (myDropdown.classList.contains('show')) {
+        myDropdown.classList.remove('show');
+      }
+  }
+}
+</script>
+
 
 </body>
+
 
 </html>
