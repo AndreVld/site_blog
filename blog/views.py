@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from blog.forms import CreateUpdatePost
 from blog.models import Posts
-from users.models import Subscriptions
+from users.models import Subscriptions, AdvUser
 
 from .filters import PostFilter
 
@@ -37,7 +37,10 @@ class DetailPostView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(DetailPostView, self).get_context_data(**kwargs)
-        context['subscribed'] = Subscriptions.objects.filter(user=self.request.user, sub_on=self.object.author).exists()
+        context['author'] = AdvUser.objects.prefetch_related('social').get(pk=self.object.author.id)
+        if self.request.user.is_authenticated:
+            context['subscribed'] = Subscriptions.objects.filter(user=self.request.user,
+                                                                 sub_on=self.object.author).exists()
         return context
 
 

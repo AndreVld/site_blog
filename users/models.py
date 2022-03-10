@@ -46,7 +46,7 @@ class Social(models.Model):
     image = models.FilePathField(path='static/images/social', blank=True)
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        self.image = f'static/images/social\{self.name}'
+        self.image = f'static/images/social/{self.name}'
         super(Social, self).save()
 
     def __str__(self):

@@ -19,7 +19,9 @@
 <body>
 
 
+
 <div class="container_">
+
     {% block read_post %}
 
         <!-- /*_____________________LEFT_________________*/ -->
@@ -42,7 +44,7 @@
         <!-- /*_____________________MIDDLE_________________*/ -->
 
 
-        <div class=" mid">
+        <div class="mid">
 
 
             {% block middle %}
@@ -77,62 +79,15 @@
             {% endif %}
         </div>
 
+        {% include 'users/includes/inc_profile.html' %}
 
 
-        {% if user.is_authenticated or obj_post %}
-            <div class="block_picture_user">
-                <img class="profile-pic"
-                     src="{% if user.image %} {{ user.image.url }} {% else %} {% static 'images/default_ava.jpg' %} {% endif %}">
-            </div>
-            <div class="fullname">
-                {% firstof obj_post.author.get_full_name obj_post.author user.get_full_name user %}
-            </div>
-
-            <ul class="block_social">
-                {% for social in user.social.all %}
-                <li class="social_link">
-                    <a target="_blank" href="{{ social.link }}">
-                        <img class="social_img" src="{{ social.image }}" >
-                    </a>
-                </li>
-                {% endfor %}
-            </ul>
-            <div class="user_info">
-                {% if obj_post.author %}
-
-                    <div class="user_label">Username</div>
-                        <div class="user_date"># {{ obj_post.author }}
-                            {% if user.is_authenticated and obj_post.author != user  %}
-                                <input name="{{ obj_post.author }}"
-                                        value="{% if subscribed %}Unsubscribe{% else %}Subscribe{% endif %}"
-                                class="btn_sub" type="button">
-                            {% endif %}
-                        </div>
-                    <div class="user_label">Email</div>
-                        <div class="user_date">{{ obj_post.author.email }}</div>
-                    <div class="user_label">About me</div>
-                        <div style="font-family: cursive" class="user_date"> {{ obj_post.author.about_me }}</div>
-
-                {% else %}
-
-                    <div class="user_label">Username</div>
-                        <div class="user_date"># {{ user }}</div>
-                    <div class="user_label">Email</div>
-                        <div class="user_date">{{ user.email }}</div>
-                    <div class="user_label">About me</div>
-                        <div style="font-family: cursive" class="user_date"> {{ user.about_me }}</div>
-
-                {% endif %}
-
-
-        {% else %}
-                {% block left %}
-                {% endblock left %}
-        {% endif %}
-
-        </div>
     </div>
 </div>
+
+
+
+
 
 <script>
 
@@ -140,7 +95,6 @@ function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
 }
 
-// Close the dropdown if the user clicks outside of it
 window.onclick = function(e) {
   if (!e.target.matches('.dropbtn')) {
     var myDropdown = document.getElementById("myDropdown");
@@ -153,7 +107,10 @@ window.onclick = function(e) {
 </script>
 
 <script src="{% static 'js/jquery.js' %}"></script>
+
 <script src="{% static 'js/subscribe.js' %}"></script>
+<script src="{% static 'js/author.js' %}"></script>
+
 
 </body>
 
