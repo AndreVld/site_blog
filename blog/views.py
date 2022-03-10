@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from blog.forms import CreateUpdatePost
 from blog.models import Posts
+from users.models import Subscriptions
 
 from .filters import PostFilter
 
@@ -33,6 +34,11 @@ class DetailPostView(DetailView):
 
     def get_object(self, queryset=None):
         return Posts.objects.select_related('author').get(slug=self.kwargs['slug'])
+
+    def get_context_data(self, **kwargs):
+        context = super(DetailPostView, self).get_context_data(**kwargs)
+        context['subscribed'] = Subscriptions.objects.filter(user=self.request.user, sub_on=self.object.author).exists()
+        return context
 
 
 class ListPostUserView(LoginRequiredMixin, ListView):

@@ -28,36 +28,13 @@
             <div class="block_caterory">
                 <div class="categories">SEARCH TO TAGS</div>
 
-                <form action="" method="GET">
+                <form action="{% url 'blog:posts' %}" method="GET">
                     {{ post_filter.form.tags}}
                     <input  class="btn_tags" type="submit" value="SEARCH">
                 </form>
             </div>
 
-            <div class="block_caterory">
-                <div class="categories">
-                    <div>SUBSCRIPTIONS</div>
-                    <div>32</div>
-                </div>
-                <ul class="list_categories">
-                    <li class="cat"><a class="link_sub" href="#"># name</a>
-                        <div> 12</div>
-                    </li>
-                    <li class="cat"><a class="link_sub" href="#"># name</a>
-                        <div> 12</div>
-                    </li>
-                    <li class="cat"><a class="link_sub" href="#"># name</a>
-                        <div> 12</div>
-                    </li>
-                    <li class="cat"><a class="link_sub" href="#"># name</a>
-                        <div> 12</div>
-                    </li>
-                    <li class="cat"><a class="link_sub" href="#"># name</a>
-                        <div> 12</div>
-                    </li>
-                </ul>
-
-            </div>
+            {% include 'users/includes/inc_subscribers.html' %}
 
         </div>
 
@@ -95,26 +72,12 @@
             </div>
             <a href="{% url 'users:logout' %}" style="right:1;">Logout</a>
             {% else %}
-            <a href="{% url 'users:login' %}">Login|</a>
-            <a href="{% url 'users:register' %}">registration</a>
+            <a href="{% url 'users:login' %}">Login</a>
+            <a href="{% url 'users:register' %}">registr</a>
             {% endif %}
-
-
         </div>
 
 
-
-        <a href="{% url 'blog:posts' %}">posts|</a>
-                <a href="{% url 'blog:create_post' %}">create post|</a>
-
-
-            {% if user.is_authenticated %}
-                <a href="{% url 'users:profile_edit' %}">profile_edit|</a>
-                <a href="{% url 'users:logout' %}">logout</a>
-            {% else %}
-                <a href="{% url 'users:login' %}">Login|</a>
-                <a href="{% url 'users:register' %}">registration</a>
-            {% endif %}
 
         {% if user.is_authenticated or obj_post %}
             <div class="block_picture_user">
@@ -135,11 +98,16 @@
                 {% endfor %}
             </ul>
             <div class="user_info">
-
                 {% if obj_post.author %}
 
                     <div class="user_label">Username</div>
-                        <div class="user_date"># {{ obj_post.author }}</div>
+                        <div class="user_date"># {{ obj_post.author }}
+                            {% if user.is_authenticated and obj_post.author != user  %}
+                                <input name="{{ obj_post.author }}"
+                                        value="{% if subscribed %}Unsubscribe{% else %}Subscribe{% endif %}"
+                                class="btn_sub" type="button">
+                            {% endif %}
+                        </div>
                     <div class="user_label">Email</div>
                         <div class="user_date">{{ obj_post.author.email }}</div>
                     <div class="user_label">About me</div>
@@ -167,8 +135,7 @@
 </div>
 
 <script>
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
+
 function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
 }
@@ -182,8 +149,11 @@ window.onclick = function(e) {
       }
   }
 }
+
 </script>
 
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/subscribe.js' %}"></script>
 
 </body>
 

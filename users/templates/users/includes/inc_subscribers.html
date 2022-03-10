@@ -1,0 +1,13 @@
+
+<div class="block_caterory">
+    <div class="categories">
+        <div>SUBSCRIPTIONS</div>
+        <div>32</div>
+    </div>
+    <ul class="list_categories">
+        {% for sub in user.subscribers.all %}
+        <li class="cat"><a class="link_sub" href="author={{sub.sub_on}}"># {{ sub.sub_on }}</a>
+            <div> 12</div>
+            {% endfor %}
+    </ul>
+</div>

@@ -25,7 +25,7 @@ class Subscriptions(models.Model):
     class Meta:
         verbose_name = 'Подписки'
         verbose_name_plural = 'Подписки'
-        constraints = (models.CheckConstraint(check=models.Q(sub_on=models.F('user')),
+        constraints = (models.CheckConstraint(check=~models.Q(sub_on=models.F('user')),
                                               name='users_subscriptions_constrains'),)
         # IntegrityError  не забыть обработать исключение при вызове save()
 
