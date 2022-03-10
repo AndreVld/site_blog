@@ -4,13 +4,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordResetView, \
     PasswordResetDoneView, PasswordResetConfirmView
 from django.forms import inlineformset_factory
-from django.http import HttpResponseRedirect
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.http import HttpResponseRedirect, JsonResponse
+
+from django.views.generic import CreateView, DeleteView
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import get_object_or_404, render
 
 from .forms import RegistrationForm, EditProfileForm
-from .models import AdvUser, Social
+from .models import AdvUser, Social, Subscriptions
 
 
 class LoginUserView(LoginView):
@@ -104,3 +105,14 @@ class UserPasswordResetDoneView(PasswordResetDoneView):
 class UserPasswordResetConfirmView(PasswordResetConfirmView):
     template_name = 'users/password_reset/confirm_password.html'
     success_url = reverse_lazy('users:login')
+
+
+@login_required
+def subscription(request, sub):
+    sub_on = get_object_or_404(AdvUser.objects.all(), username=sub)
+    signed = Subscriptions.objects.get_or_create(user=request.user, sub_on=sub_on)
+    data = {'result': 'Unsubscribe'}
+    if not signed[1]:
+        Subscriptions.objects.get(user=request.user, sub_on=sub_on).delete()
+        data['result'] = 'Subscribe'
+    return JsonResponse(data)

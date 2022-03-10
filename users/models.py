@@ -25,7 +25,7 @@ class Subscriptions(models.Model):
     class Meta:
         verbose_name = 'Подписки'
         verbose_name_plural = 'Подписки'
-        constraints = (models.CheckConstraint(check=models.Q(sub_on=models.F('user')),
+        constraints = (models.CheckConstraint(check=~models.Q(sub_on=models.F('user')),
                                               name='users_subscriptions_constrains'),)
         # IntegrityError  не забыть обработать исключение при вызове save()
 
@@ -46,7 +46,7 @@ class Social(models.Model):
     image = models.FilePathField(path='static/images/social', blank=True)
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        self.image = f'static/images/social\{self.name}'
+        self.image = f'static/images/social/{self.name}'
         super(Social, self).save()
 
     def __str__(self):

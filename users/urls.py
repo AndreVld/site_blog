@@ -1,7 +1,8 @@
 from django.urls import path
 
-from .views import LoginUserView, LogoutUserView, RegistrationUserView,DeleteUserView, \
-    ChangePasswordUserView, UserPasswordResetView, UserPasswordResetDoneView, UserPasswordResetConfirmView, edit_profile
+from .views import LoginUserView, LogoutUserView, RegistrationUserView, DeleteUserView, \
+    ChangePasswordUserView, UserPasswordResetView, UserPasswordResetDoneView, UserPasswordResetConfirmView, \
+    edit_profile, subscription
 
 app_name = 'users'
 
@@ -12,6 +13,8 @@ urlpatterns = [
     path('registration', RegistrationUserView.as_view(), name='register'),
     path('profile_edit', edit_profile, name='profile_edit'),
     path('delete_profile', DeleteUserView.as_view(), name='delete_profile'),
+
+    path('subscribe/<str:sub>', subscription, name='subscribe'),
 
     path('change_password', ChangePasswordUserView.as_view(), name='change_password'),
 

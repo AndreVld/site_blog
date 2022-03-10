@@ -19,7 +19,9 @@
 <body>
 
 
+
 <div class="container_">
+
     {% block read_post %}
 
         <!-- /*_____________________LEFT_________________*/ -->
@@ -28,36 +30,13 @@
             <div class="block_caterory">
                 <div class="categories">SEARCH TO TAGS</div>
 
-                <form action="" method="GET">
+                <form action="{% url 'blog:posts' %}" method="GET">
                     {{ post_filter.form.tags}}
                     <input  class="btn_tags" type="submit" value="SEARCH">
                 </form>
             </div>
 
-            <div class="block_caterory">
-                <div class="categories">
-                    <div>SUBSCRIPTIONS</div>
-                    <div>32</div>
-                </div>
-                <ul class="list_categories">
-                    <li class="cat"><a class="link_sub" href="#"># name</a>
-                        <div> 12</div>
-                    </li>
-                    <li class="cat"><a class="link_sub" href="#"># name</a>
-                        <div> 12</div>
-                    </li>
-                    <li class="cat"><a class="link_sub" href="#"># name</a>
-                        <div> 12</div>
-                    </li>
-                    <li class="cat"><a class="link_sub" href="#"># name</a>
-                        <div> 12</div>
-                    </li>
-                    <li class="cat"><a class="link_sub" href="#"># name</a>
-                        <div> 12</div>
-                    </li>
-                </ul>
-
-            </div>
+            {% include 'users/includes/inc_subscribers.html' %}
 
         </div>
 
@@ -65,7 +44,7 @@
         <!-- /*_____________________MIDDLE_________________*/ -->
 
 
-        <div class=" mid">
+        <div class="mid">
 
 
             {% block middle %}
@@ -95,85 +74,27 @@
             </div>
             <a href="{% url 'users:logout' %}" style="right:1;">Logout</a>
             {% else %}
-            <a href="{% url 'users:login' %}">Login|</a>
-            <a href="{% url 'users:register' %}">registration</a>
+            <a href="{% url 'users:login' %}">Login</a>
+            <a href="{% url 'users:register' %}">registr</a>
             {% endif %}
-
-
         </div>
 
+        {% include 'users/includes/inc_profile.html' %}
 
 
-        <a href="{% url 'blog:posts' %}">posts|</a>
-                <a href="{% url 'blog:create_post' %}">create post|</a>
-
-
-            {% if user.is_authenticated %}
-                <a href="{% url 'users:profile_edit' %}">profile_edit|</a>
-                <a href="{% url 'users:logout' %}">logout</a>
-            {% else %}
-                <a href="{% url 'users:login' %}">Login|</a>
-                <a href="{% url 'users:register' %}">registration</a>
-            {% endif %}
-
-        {% if user.is_authenticated or obj_post %}
-            <div class="block_picture_user">
-                <img class="profile-pic"
-                     src="{% if user.image %} {{ user.image.url }} {% else %} {% static 'images/default_ava.jpg' %} {% endif %}">
-            </div>
-            <div class="fullname">
-                {% firstof obj_post.author.get_full_name obj_post.author user.get_full_name user %}
-            </div>
-
-            <ul class="block_social">
-                {% for social in user.social.all %}
-                <li class="social_link">
-                    <a target="_blank" href="{{ social.link }}">
-                        <img class="social_img" src="{{ social.image }}" >
-                    </a>
-                </li>
-                {% endfor %}
-            </ul>
-            <div class="user_info">
-
-                {% if obj_post.author %}
-
-                    <div class="user_label">Username</div>
-                        <div class="user_date"># {{ obj_post.author }}</div>
-                    <div class="user_label">Email</div>
-                        <div class="user_date">{{ obj_post.author.email }}</div>
-                    <div class="user_label">About me</div>
-                        <div style="font-family: cursive" class="user_date"> {{ obj_post.author.about_me }}</div>
-
-                {% else %}
-
-                    <div class="user_label">Username</div>
-                        <div class="user_date"># {{ user }}</div>
-                    <div class="user_label">Email</div>
-                        <div class="user_date">{{ user.email }}</div>
-                    <div class="user_label">About me</div>
-                        <div style="font-family: cursive" class="user_date"> {{ user.about_me }}</div>
-
-                {% endif %}
-
-
-        {% else %}
-                {% block left %}
-                {% endblock left %}
-        {% endif %}
-
-        </div>
     </div>
 </div>
 
+
+
+
+
 <script>
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
+
 function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
 }
 
-// Close the dropdown if the user clicks outside of it
 window.onclick = function(e) {
   if (!e.target.matches('.dropbtn')) {
     var myDropdown = document.getElementById("myDropdown");
@@ -182,7 +103,13 @@ window.onclick = function(e) {
       }
   }
 }
+
 </script>
+
+<script src="{% static 'js/jquery.js' %}"></script>
+
+<script src="{% static 'js/subscribe.js' %}"></script>
+<script src="{% static 'js/author.js' %}"></script>
 
 
 </body>

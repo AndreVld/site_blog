@@ -4,23 +4,23 @@
 {% block read_post %}
 
     <div class="read_post">
-     <div class="block_author">
-                    <div>
-                        <a href="{% url 'blog:posts_author' object.author %}" class="link_author">{{ object.author }}</a>
-                        <span class="time"> {{ object.created_date|timesince }} назад
+        <div class="block_author">
+            <div>
+                <a href="{% url 'blog:posts_author' object.author %}" class="link_author">{{ object.author }}</a>
+                <span class="time"> {{ object.created_date|timesince }} назад
                             </span>
-                    </div>
-                </div>
-            {% if obj_post.image %}
-                <img class="read_post_image_prev" src="{{obj_post.image.url}}" alt="">
-            {% endif %}
+            </div>
+        </div>
+        {% if obj_post.image %}
+        <img class="read_post_image_prev" src="{{obj_post.image.url}}" alt="">
+        {% endif %}
 
 
-            <h1 class="text_post headline ">{{ obj_post.headline }}</h1>
-            {% if obj_post.sub_headline is not none %}
-            <h4 class="text_post sub_headline ">{{ obj_post.sub_headline }}</h4>
-            {% endif%}
-            <p style="margin: 0px 10px 0px 22px;">{{ obj_post.body|safe }}</p>
+        <h1 class="text_post headline ">{{ obj_post.headline }}</h1>
+        {% if obj_post.sub_headline is not none %}
+        <h4 class="text_post sub_headline ">{{ obj_post.sub_headline }}</h4>
+        {% endif%}
+        <p style="margin: 0px 10px 0px 22px;">{{ obj_post.body|safe }}</p>
 
     </div>
 
