@@ -1,13 +1,24 @@
-
+{% load thumbnail %}
+{% load static %}
 <div class="block_caterory">
     <div class="categories">
         <div>SUBSCRIPTIONS</div>
-        <div>32</div>
+        <div>{{ user.subscribers.count }}</div>
     </div>
     <ul class="list_categories">
         {% for sub in user.subscribers.all %}
-        <li class="cat"><a class="link_sub" href="author={{sub.sub_on}}"># {{ sub.sub_on }}</a>
-            <div> 12</div>
+        <li class="cat">
+
+            <a class="link_sub" href="author={{sub.sub_on}}">
+
+                <div style="display:flex;">
+                    <img style="border-radius: 50px; "
+                 src="{% if sub.sub_on.image %} {% thumbnail sub.sub_on.image 'mini_image_user' %} {% else %} {% static 'images/default_ava45x45.jpg' %} {% endif %}">
+                    <div style="align-self:center; margin-left:5px">
+                         # {{ sub.sub_on }}
+                    </div>
+                </div>
+            </a>
             {% endfor %}
     </ul>
 </div>

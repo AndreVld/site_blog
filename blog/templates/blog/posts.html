@@ -52,7 +52,7 @@
                 {% if post.tags.all.exists %}
                     <div class="blog_tags">
                         {% for tag in post.tags.all %}
-                            <a style="text-decoration: none;" href="#"><span class="teg">{{ tag }}</span></a>
+                            <a style="text-decoration: none;" href="?tags={{ tag.id }}"><span class="teg">{{ tag }}</span></a>
                         {% endfor %}
                     </div>
                 {% endif %}
