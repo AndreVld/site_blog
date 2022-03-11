@@ -2,11 +2,14 @@
 {% load static %}
 
 {% block middle %}
-
+<div class="block_delete">
     <form action="" method="POST">
         {% csrf_token %}
-        <p> Вы действительно хотите удалить профиль <span>"{{ object }}"</span>?</p>
-        <input type="submit" value="Delete">
+        <p class="delete_profile"> Are you sure you want to delete profile <span>"{{ object }}"</span>?</p>
+        <div class="block_btn">
+            <input class="btn_" type="submit" value="Confirm">
+            <a class="btn_" style="margin-left:10px" href="{% url 'users:profile_edit' %}">return</a>
+        </div>
     </form>
-        <a  href="{% url 'users:profile_edit' %}">return</a>
+</div>
 {% endblock %}

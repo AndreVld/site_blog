@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'crispy_forms',
     'django_filters',
+    'easy_thumbnails',
 
     'users',
     'blog',
@@ -154,3 +155,18 @@ if DEBUG:
     EMAIL_HOST_PASSWORD = '254354a4dec0f1'
     EMAIL_PORT = '2525'
 
+THUMBNAIL_ALIASES = {
+    'users.AdvUser.image': {
+        'mini_image_user': {
+            'size': (45, 45),
+            'crop': 'smart'
+        }
+    },
+    'blog.posts.image': {
+        'pres_posts': {
+            'size': (222, 222),
+            'crop': 'smart',
+        }
+    }
+
+}

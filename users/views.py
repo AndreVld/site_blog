@@ -30,7 +30,7 @@ class RegistrationUserView(CreateView):
 
 @login_required
 def edit_profile(request):
-    SocialFormSet = inlineformset_factory(AdvUser, Social, fields=('name', 'link',), extra=1)
+    SocialFormSet = inlineformset_factory(AdvUser, Social, fields=('name', 'link',), extra=2)
     form = EditProfileForm(instance=request.user)
     formset = SocialFormSet(instance=request.user)
     if request.method == 'POST':

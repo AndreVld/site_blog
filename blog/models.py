@@ -21,7 +21,7 @@ class Tags(models.Model):
 class Posts(models.Model):
     author = models.ForeignKey(AdvUser, related_name='posts', on_delete=models.CASCADE, verbose_name='Автор поста')
     slug = models.SlugField(null=True, blank=True)
-    image = models.ImageField(blank=True, null=True, upload_to='images')
+    image = models.ImageField(blank=True, null=True, upload_to='images/%Y/%m/%d')
     headline = models.CharField(max_length=200, verbose_name='Заголовок')
     sub_headline = models.CharField(max_length=200, null=True, blank=True, verbose_name='Подзаголовок')
     body = RichTextUploadingField(null=True, blank=True, verbose_name='Пост')
@@ -45,6 +45,10 @@ class Posts(models.Model):
             self.slug = slug
 
         super(Posts, self).save()
+
+    def delete(self, using=None, keep_parents=False):
+        self.image.delete()
+        super(Posts, self).delete()
 
     def __str__(self):
         return self.headline

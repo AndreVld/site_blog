@@ -23,6 +23,8 @@ class ListPostsView(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ListPostsView, self).get_context_data(**kwargs)
+        if self.kwargs:
+            context['author'] = AdvUser.objects.get(username=self.kwargs['author'])
         post_filter = PostFilter()
         context['post_filter'] = post_filter
         return context

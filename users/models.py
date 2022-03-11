@@ -1,5 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from easy_thumbnails.fields import ThumbnailerImageField
+from easy_thumbnails.files import get_thumbnailer
 
 
 # Create your models here.
@@ -7,14 +9,10 @@ from django.db import models
 
 class AdvUser(AbstractUser):
     email = models.EmailField(verbose_name='Email адрес', unique=True, )
-    image = models.ImageField(upload_to='users_images', blank=True, null=True)
-    about_me = models.TextField(verbose_name='Обо мне', max_length=512, blank=True)
+    image = models.ImageField(upload_to='users_images/%Y/%m/%d', blank=True, null=True)
+    about_me = models.TextField(verbose_name='About me', max_length=1024, blank=True)
     is_confirmed = models.BooleanField(default=True, verbose_name='Подтвердил почту?')
     show_email = models.BooleanField(default=True, verbose_name='Email скрыт?')
-
-    class Meta:
-        verbose_name = 'Пользователь'
-        verbose_name_plural = 'Пользователи'
 
 
 class Subscriptions(models.Model):
@@ -32,12 +30,11 @@ class Subscriptions(models.Model):
 
 class Social(models.Model):
     class Names(models.TextChoices):
-        VK = 'vkontakte-96.png', 'Вконтакте'
-        FACEBOOK = 'facebook-96.png'
-        INSTAGRAM = 'instagram-96.png'
+        VK = 'vkontakte', 'Vkontakte'
+        FACEBOOK = 'facebook'
+        INSTAGRAM = 'instagram'
         # GITHUB = 'git'
         # YOUTUBE = 'Youtube'
-
         __empty__ = 'Select the name of the social network'
 
     user = models.ForeignKey(AdvUser, on_delete=models.CASCADE, related_name='social')
@@ -46,12 +43,12 @@ class Social(models.Model):
     image = models.FilePathField(path='static/images/social', blank=True)
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        self.image = f'static/images/social/{self.name}'
+        self.image = f'static/images/social/{self.name}-96.png'
         super(Social, self).save()
 
     def __str__(self):
         return self.name
 
     class Meta:
-        verbose_name_plural = 'Соц. сети'
-        verbose_name = 'Соц. сеть'
+        verbose_name_plural = 'social networks'
+        verbose_name = 'Social network'
