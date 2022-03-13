@@ -1,6 +1,5 @@
 {% load static %}
 
-
 {% if author %}
 
     <div class="block_picture_user">
@@ -13,10 +12,11 @@
     </div>
 
     <ul class="block_social">
+
         {% for social in author.social.all %}
         <li class="social_link">
             <a target="_blank" href="{{ social.link }}">
-                <img class="social_img" src="{{ social.image }}">
+                <img class="social_img" src="{% get_static_prefix %}{{ social.image }}">
             </a>
         </li>
         {% endfor %}
@@ -58,7 +58,7 @@
             {% for social in user.social.all %}
             <li class="social_link">
                 <a target="_blank" href="{{ social.link }}">
-                    <img class="social_img" src="{{ social.image }}">
+                    <img class="social_img" src="{% get_static_prefix %}{{ social.image }}">
                 </a>
             </li>
             {% endfor %}

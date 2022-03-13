@@ -1,0 +1,45 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<style type="text/css">
+    .requiredField{
+        display:none;
+    }
+</style>
+
+
+
+    <div class="block_create_comment">
+        <form id="commentForm" method='POST'>
+
+
+            {% csrf_token %}
+            {{ form|crispy }}
+
+            <input type="submit" name="create_comment" value="Submit" />
+        </form>
+    </div>
+    {% for com_1 in comments %}
+    <ul class="list_comments">
+        <li class="comment">
+            <h1>{{ com_1.comment_author }}</h1>
+            <h4>{{ com_1.comment }} </h4>
+            <div style="margin-left:25px;">
+                {% if com_1.comments_for_parent.exists %}
+                {% for com_2 in com_1.comments_for_parent.all %}
+                <ul class="list_comments">
+                    <li class="comment">
+                        <h1>{{ com_2.comment_author }}</h1>
+                        <h4>{{ com_2.comment }} </h4>
+                        <button id=" com.id " name="Reply">Reply</button>
+                    </li>
+                </ul>
+                {% endfor %}
+                {% endif %}
+            </div>
+
+        </li>
+    </ul>
+    {% endfor %}
+
+

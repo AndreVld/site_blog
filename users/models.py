@@ -18,7 +18,7 @@ class AdvUser(AbstractUser):
 class Subscriptions(models.Model):
     user = models.ForeignKey(AdvUser, related_name='subscribers', on_delete=models.CASCADE)
     sub_on = models.ForeignKey(AdvUser, related_name='sub', on_delete=models.CASCADE)
-    created_date = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = 'Подписки'
@@ -43,7 +43,7 @@ class Social(models.Model):
     image = models.FilePathField(path='static/images/social', blank=True)
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        self.image = f'static/images/social/{self.name}-96.png'
+        self.image = f'images/social/{self.name}-96.png'
         super(Social, self).save()
 
     def __str__(self):

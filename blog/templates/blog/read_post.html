@@ -7,7 +7,7 @@
         <div class="block_author">
             <div>
                 <a href="{% url 'blog:posts_author' object.author %}" class="link_author">{{ object.author }}</a>
-                <span class="time"> {{ object.created_date|timesince }} назад
+                <span class="time"> {{ object.created_at|timesince }} назад
                             </span>
             </div>
         </div>
@@ -22,8 +22,11 @@
         {% endif%}
         <p style="margin: 0px 10px 0px 22px;">{{ obj_post.body|safe }}</p>
 
-    </div>
+        <div class="block_comment">
 
+        {% include 'blog/includes/inc_comments.html' %}
+        </div>
+    </div>
 
 {% endblock %}
 

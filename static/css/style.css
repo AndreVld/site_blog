@@ -338,8 +338,8 @@
     margin-right: 5px;
 }
 .social_img{
-    width: 22px;
-    height: 22px;
+    width: 25px;
+    height: 25px;
 }
 
 .user_info{
@@ -629,4 +629,21 @@
 
 .show {
     display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.list_comments{
+    list-style-type: none;
 }
