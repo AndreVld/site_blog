@@ -1,5 +1,6 @@
 from django.urls import path
-from blog.views import ListPostsView, CreatePostView, UpdatePostView, DeletePostView, ListPostUserView, DetailPostView
+from blog.views import ListPostsView, CreatePostView, UpdatePostView, DeletePostView, ListPostUserView, DetailPostView, \
+    create_comment
 
 app_name = 'blog'
 
@@ -14,4 +15,6 @@ urlpatterns = [
     path('create_post/', CreatePostView.as_view(), name='create_post'),
     path('update_post/<slug:slug>', UpdatePostView.as_view(), name='update_post'),
     path('delete_post/<slug:slug>', DeletePostView.as_view(), name='delete_post'),
+
+    path('create_comment', create_comment, name='create_comment'),
 ]
